@@ -202,5 +202,5 @@ $ bun start
 ```bash
 $ npm i -g pnpm
 $ pnpm i
-$ pnpm start
+$ pnpm start:node
 ```
