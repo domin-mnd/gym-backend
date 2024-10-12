@@ -14,7 +14,9 @@ interface Payload {
  * /v0/bank-card:
  *   delete:
  *     summary: Удаление банковской карты
- *     description: Удаление банковской карты по заранее известному ID карты.
+ *     description: Удаление банковской карты по заранее известному ID карты. Удалить карту можно только свою относительно JWT.
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -37,18 +39,7 @@ interface Payload {
  *                   type: boolean
  *                   description: Успешно ли удаление.
  *       400:
- *         description: Ошибка валидации
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                   description: Успешно ли удаление.
- *                 error:
- *                   type: any
- *                   description: Ошибка валидации или ошибка нахождения карты
+ *         $ref: '#/components/responses/BadRequest'
  *       401:
  *         $ref: '#/components/responses/Unauthorized'
  */

@@ -1,0 +1,30 @@
+components:
+  responses:
+    Unauthorized:
+      description: Не авторизован
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                description: Успешность запроса
+                example: false
+              error:
+                type: string
+                description: Сообщение об ошибке
+                example: "Unauthorized"
+    BadRequest:
+      description: Ошибка валидации
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                description: Успешность запроса
+                example: false
+              error:
+                $ref: "#/components/schemas/ValidationError"

@@ -3,20 +3,26 @@ import { createRouter } from "storona";
 import { logRoutes } from "@/utils/logger";
 import { middleware } from "@/middleware";
 import {
+  defineJsdoc,
+  defineSwagger,
+  defineYaml,
+} from "@/utils/swagger";
+import {
   defineEnvironment,
   definePort,
   printReady,
 } from "@/utils/server";
 import "dotenv/config";
-import { defineJsdoc } from "./utils/jsdoc";
 
 async function createServer(): Promise<Express> {
-  const jsdoc = defineJsdoc();
+  const jsdoc = defineJsdoc("./src/routes/**/*.ts");
+  const yaml = defineYaml("./src/docs/**/*.yaml");
+  const swagger = defineSwagger(jsdoc, yaml);
 
   const app = express()
     .use(express.json()) // Body parser
     .use(...middleware) // src/middleware/...
-    .use("/docs", ...jsdoc);
+    .use("/docs", ...swagger);
 
   // Router
   const routes = await createRouter(app, {

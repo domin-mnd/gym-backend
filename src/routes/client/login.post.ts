@@ -12,6 +12,48 @@ interface Payload {
   password: string;
 }
 
+/**
+ * @openapi
+ * /v0/client/login:
+ *   post:
+ *     summary: Аутентификация клиента
+ *     description: Аутентификация клиента по почте и паролю.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email_address:
+ *                 type: string
+ *                 description: Почта клиента
+ *                 example: "Og0rB@example.com"
+ *               password:
+ *                 type: string
+ *                 description: Пароль клиента
+ *                 example: "1234567890"
+ *     responses:
+ *       200:
+ *         description: Успешная аутентификация клиента
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Успешность запроса
+ *                   example: true
+ *                 session:
+ *                   $ref: '#/components/schemas/Session'
+ *                 client:
+ *                   $ref: '#/components/schemas/Client'
+ *       400:
+ *         $ref: '#/components/responses/BadRequest'
+ *       401:
+ *         $ref: '#/components/responses/Unauthorized'
+ */
 export default defineExpressRoute<{
   ReqBody: Payload;
 }>(async (req, res) => {

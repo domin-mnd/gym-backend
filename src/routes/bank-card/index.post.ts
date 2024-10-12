@@ -13,6 +13,57 @@ interface Payload {
   cvv: string;
 }
 
+/**
+ * @openapi
+ * /v0/bank-card:
+ *   post:
+ *     summary: Добавление банковской карты
+ *     description: Добавление банковской карты по JWT клиента.
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               card_number:
+ *                 type: string
+ *                 description: Номер банковской карты
+ *                 example: "4242424242424242"
+ *               cardholder_name:
+ *                 type: string
+ *                 description: Держатель банковской карты
+ *                 example: "SAKHABUTDINOV KAMIL"
+ *               expires_at:
+ *                 type: string
+ *                 format: date
+ *                 description: Срок действия банковской карты
+ *                 example: "2025-01-01"
+ *               cvv:
+ *                 type: string
+ *                 description: CVC/CVV код
+ *                 example: "123"
+ *     responses:
+ *       200:
+ *         description: Добавление банковской карты
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Успешно ли добавление.
+ *                   example: true
+ *                 bank_card:
+ *                   $ref: '#/components/schemas/BankCard'
+ *       400:
+ *         $ref: '#/components/responses/BadRequest'
+ *       401:
+ *         $ref: '#/components/responses/Unauthorized'
+ */
 export default defineExpressRoute<{
   ReqBody: Payload;
   Locals: ClientLocals;

@@ -17,6 +17,66 @@ interface Payload
   password: string;
 }
 
+/**
+ * @openapi
+ * /v0/client/register:
+ *   post:
+ *     summary: Регистрация нового клиента
+ *     description: Регистрация клиента по введённым данным.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email_address:
+ *                 type: string
+ *                 description: Адрес электронной почты
+ *                 example: "Og0rB@example.com"
+ *               password:
+ *                 type: string
+ *                 description: Пароль клиента
+ *                 example: "1234567890"
+ *               first_name:
+ *                 type: string
+ *                 description: Имя
+ *                 example: "Иван"
+ *               last_name:
+ *                 type: string
+ *                 description: Фамилия
+ *                 example: "Иванов"
+ *               patronymic:
+ *                 type: string
+ *                 description: Отчество
+ *                 example: null
+ *               phone_number:
+ *                 type: string
+ *                 description: Номер телефона
+ *                 example: "79174236278"
+ *               profile_picture_url:
+ *                 type: string
+ *                 description: URL изображения профиля
+ *                 example: "https://example.com/profile_picture.jpg"
+ *     responses:
+ *       200:
+ *         description: Успешная регистрация нового клиента
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Успешность запроса
+ *                   example: true
+ *                 session:
+ *                   $ref: '#/components/schemas/Session'
+ *                 client:
+ *                   $ref: '#/components/schemas/Client'
+ *       400:
+ *         $ref: '#/components/responses/BadRequest'
+ */
 export default defineExpressRoute<{
   ReqBody: Payload;
 }>(async (req, res) => {

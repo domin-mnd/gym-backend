@@ -1,0 +1,143 @@
+components:
+  schemas:
+    ValidationError:
+      type: array
+      items:
+        type: object
+        description: Ошибка валидации
+        properties:
+          code:
+            type: string
+            description: Тип ошибки
+            example: "invalid_type"
+          expected:
+            type: string
+            description: Тип ожидаемого значения
+            example: "string"
+          received:
+            type: string
+            description: Тип полученного значения
+            example: "undefined"
+          path:
+            type: array
+            description: Путь до ошибки
+            items:
+              type: string
+              example: "client_id"
+          message:
+            type: string
+            description: Сообщение об ошибке
+            example: "Required"
+    BankCard:
+      type: object
+      required:
+        - bank_card_id
+        - card_number
+        - cardholder_name
+        - client_id
+        - cvv
+        - expires_at
+      properties:
+        bank_card_id:
+          type: integer
+          description: Идентификатор банковской карты из БД
+        card_number:
+          type: string
+          description: Номер банковской карты
+        cardholder_name:
+          type: string
+          description: Держатель банковской карты
+        client_id:
+          type: integer
+          description: Идентификатор клиента из БД
+        cvv:
+          type: string
+          description: CVC/CVV код
+        expires_at:
+          type: string
+          format: date
+          description: Дата окончания действия банковской карты
+      example:
+        bank_card_id: 1
+        card_number: "1234567890123456"
+        cardholder_name: "John Doe"
+        client_id: 1
+        cvv: "123"
+        expires_at: "2022-01-01"
+    Client:
+      type: object
+      required:
+        - client_id
+        - created_at
+        - email_address
+        - first_name
+        - last_name
+        - phone_number
+        - profile_picture_url
+      properties:
+        client_id:
+          type: integer
+          description: Идентификатор клиента из БД
+        created_at:
+          type: string
+          format: date
+          description: Дата создания аккаунта
+        email_address:
+          type: string
+          description: Адрес электронной почты
+        first_name:
+          type: string
+          description: Имя
+        last_name:
+          type: string
+          description: Фамилия
+        patronymic:
+          type: string
+          description: Отчество
+        phone_number:
+          type: string
+          description: Номер телефона
+        profile_picture_url:
+          type: string
+          description: URL изображения профиля
+      example:
+        client_id: 1
+        created_at: "2024-10-10T18:36:47.668Z"
+        email_address: "Og0rB@example.com"
+        first_name: "Иван"
+        last_name: "Иванов"
+        patronymic: null
+        phone_number: "79174236278"
+        profile_picture_url: "https://example.com/profile_picture.jpg"
+    Session:
+      type: object
+      required:
+        - created_at
+        - expires_at
+        - jwt
+        - revoked
+        - session_id
+      properties:
+        created_at:
+          type: string
+          format: date
+          description: Дата создания сессии
+        expires_at:
+          type: string
+          format: date
+          description: Дата окончания сессии
+        jwt:
+          type: string
+          description: JWT токен
+        revoked:
+          type: boolean
+          description: Признак отзыва сессии
+        session_id:
+          type: integer
+          description: Идентификатор сессии
+      example:
+        session_id: 1
+        created_at: "2024-10-10T18:36:47.668Z"
+        expires_at: "2024-11-10T18:36:47.668Z"
+        jwt: "jE92mGiq2S.e2s1.da239-Z983ns"
+        revoked: false

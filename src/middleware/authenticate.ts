@@ -18,8 +18,8 @@ const swaggerEndpoints = [
 const prefix = `/v${getAPIVersion()}`;
 
 const allowedUrls: Record<string, string[]> = {
-  [`${prefix}/client/signup`]: ["POST"],
-  [`${prefix}/client/signin`]: ["POST"],
+  [`${prefix}/client/register`]: ["POST"],
+  [`${prefix}/client/login`]: ["POST"],
   [`${prefix}/gym`]: ["GET"],
   ...swaggerEndpoints.reduce<Record<string, string[]>>((acc, url) => {
     acc[url] = ["GET"];
