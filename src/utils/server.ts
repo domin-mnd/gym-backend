@@ -35,7 +35,10 @@ export function printReady(environment: Environment, port: number) {
   console.info("");
   consola.success(
     `  ${colorize("greenBright", "Local")}: http://localhost:${port}`,
-    `\n    ${colorize("yellowBright", "Environment")}: ${environment}`,
+    `\n    ${colorize(
+      "yellowBright",
+      "Environment",
+    )}: ${environment}`,
   );
   console.info("");
 }

@@ -14,7 +14,10 @@
     "sql:types": "kysely-codegen",
     "sql:up": "bun run ./src/database/migrate.ts",
     "erd:up": "mmdc -i ./public/erd.mmd -o ./public/erd.svg -e svg -t neutral",
-    "erd:types": "mermerd -o ./public/erd.mmd"
+    "erd:types": "mermerd -o ./public/erd.mmd",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky",
+    "lint": "korob lint"
   },
   "engines": {
     "node": ">=20"
@@ -45,12 +48,16 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.0",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@commitlint/types": "^19.5.0",
     "@mermaid-js/mermaid-cli": "^11.2.1",
     "@types/express": "^4.17.21",
     "@types/node": "^20",
     "@types/pg": "^8.11.10",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.6",
+    "husky": "^9.1.6",
     "korob": "^0.2.1",
     "kysely-codegen": "^0.16.6"
   },
