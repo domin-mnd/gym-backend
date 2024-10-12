@@ -1,0 +1,19 @@
+import { db } from "@/database";
+import { MembershipRepository } from "@/repositories/membership";
+import type { ClientLocals } from "@/utils/types";
+import { defineExpressRoute } from "storona";
+
+const membershipRepository = new MembershipRepository(db);
+
+export default defineExpressRoute<{
+  Locals: ClientLocals;
+}>(async (_req, res) => {
+  const membership = await membershipRepository.getAny(
+    res.locals.client.client_id,
+  );
+
+  res.json({
+    success: true,
+    membership,
+  });
+});

@@ -1,0 +1,55 @@
+{
+  "name": "gym",
+  "version": "0.0.0",
+  "description": "Gym backend (student stuff).",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "bun start:bun",
+    "dev": "bun dev:bun",
+    "start:bun": "bun run .",
+    "start:node": "korob start",
+    "dev:bun": "bun --watch run .",
+    "dev:node": "korob dev",
+    "compile": "bun build . --compile --outfile api",
+    "sql:types": "kysely-codegen",
+    "sql:up": "bun run ./src/database/migrate.ts",
+    "erd:up": "mmdc -i ./public/erd.mmd -o ./public/erd.svg -e svg -t neutral",
+    "erd:types": "mermerd -o ./public/erd.mmd"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/domin-mnd/gym-backend.git"
+  },
+  "author": "domin-mnd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/domin-mnd/gym-backend/issues"
+  },
+  "homepage": "https://github.com/domin-mnd/gym-backend#readme",
+  "dependencies": {
+    "consola": "^3.2.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "kysely": "^0.27.4",
+    "pg": "^8.12.0",
+    "storona": "^0.1.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.0",
+    "@mermaid-js/mermaid-cli": "^11.2.1",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20",
+    "@types/pg": "^8.11.10",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.6",
+    "korob": "^0.2.1",
+    "kysely-codegen": "^0.16.6"
+  },
+  "trustedDependencies": ["@biomejs/biome", "puppeteer"]
+}

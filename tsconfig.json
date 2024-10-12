@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "ES2022",
+    "target": "ESNext",
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src/**/*", "src/*"],
+  "exclude": ["**/node_modules/**"]
+}

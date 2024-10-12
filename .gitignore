@@ -1,0 +1,12 @@
+# Dist & modules
+node_modules
+out
+dist
+
+# Korob
+.prettierignore
+.prettierrc.json
+biome.json
+
+# Environment
+.env
