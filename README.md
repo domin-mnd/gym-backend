@@ -3,6 +3,16 @@
 
 # Gym API
 
+- [x] 📚 OpenAPI Specification
+- [x] 📝 TSDoc Coverage
+- [x] 🗂️ Database Repositories
+- [x] 📖 ER Diagram
+- [x] 🔍 Linting
+- [x] ⚡ Bun Integration
+- [x] 🪢 Backwards Node.js Compatibility
+- [ ] 🚀 CI/CD
+- [ ] 🧪 Complete Test Coverage
+
 ```mermaid
 erDiagram
     bank_card {
