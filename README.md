@@ -7,6 +7,7 @@
 - [x] 📝 TSDoc Coverage
 - [x] 🗂️ Database Repositories
 - [x] 📖 ER Diagram
+- [ ] 🖼️ AWS S3 Support
 - [x] 🔍 Linting
 - [x] ⚡ Bun Integration
 - [x] 🪢 Backwards Node.js Compatibility
