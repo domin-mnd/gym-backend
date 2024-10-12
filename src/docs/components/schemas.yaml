@@ -60,7 +60,7 @@ components:
       example:
         bank_card_id: 1
         card_number: "1234567890123456"
-        cardholder_name: "John Doe"
+        cardholder_name: "SAKHABUTDINOV KAMIL"
         client_id: 1
         cvv: "123"
         expires_at: "2022-01-01"
@@ -106,7 +106,7 @@ components:
         email_address: "Og0rB@example.com"
         first_name: "Иван"
         last_name: "Иванов"
-        patronymic: null
+        patronymic: "Иванович"
         phone_number: "79174236278"
         profile_picture_url: "https://example.com/profile_picture.jpg"
     Session:

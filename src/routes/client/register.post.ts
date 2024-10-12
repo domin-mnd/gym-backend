@@ -49,7 +49,7 @@ interface Payload
  *               patronymic:
  *                 type: string
  *                 description: Отчество
- *                 example: null
+ *                 example: "Иванович"
  *               phone_number:
  *                 type: string
  *                 description: Номер телефона
