@@ -1,7 +1,24 @@
 > [!CAUTION]
 > This API is not intended for public use. It can serve as an example usage of [storona](https://storona.domin.pro) in production.
 
-# Gym API
+# Contents
+
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+  - [Bun](#bun)
+  - [Node](#node)
+  - [Database](#database)
+  - [Auth](#auth)
+  - [ERD](#erd)
+- [Getting started](#getting-started)
+  - [Bun](#bun-1)
+  - [Node](#node-1)
+
+# Introduction
+
+This is a monolithic modern backend API that implements CRUD operations for a made up "Gym" project.
+
+This API was designed as a smaller but full-fledged barebones express project without the use of any meta framework for extra abstraction. Instead it implements own architecture I'm fond of. Simplicity and flexibility are key to the project.
 
 - [x] 📚 OpenAPI Specification
 - [x] 📝 TSDoc Coverage
@@ -128,7 +145,7 @@ erDiagram
 > [!TIP]
 > For OpenAPI documentation, head to /docs page of deployed API instance whether it is localhost or production one.
 
-## Prerequisites
+# Prerequisites
 
 Current prerequisite scripts are only suitable if you run x86-64 linux machine. For other platforms, refer to corresponding tech docs for installing prerequisites.
 
@@ -186,7 +203,7 @@ Now you can run `bun erd:types` to pull changes to `public/erd.mmd` path. For th
 
 To export to graphic format, run `bun erd:up`.
 
-## Getting started
+# Getting started
 
 For node and bun runtimes, you can use following commands to install dependencies and start the API:
 
