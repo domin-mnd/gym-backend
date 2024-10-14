@@ -27,8 +27,13 @@ export function throwError(
   res: Response,
   error: Error | object | object[] | string,
 ) {
-  const statusCode =
-    typeof error === "string" && error === "Unauthorized" ? 401 : 400;
+  let statusCode = 400;
+
+  if (typeof error === "string" && error === "Unauthorized")
+    statusCode = 401;
+
+  if (typeof error === "string" && error === "Not found")
+    statusCode = 404;
 
   if (!(error instanceof Error)) {
     res.status(statusCode).json({

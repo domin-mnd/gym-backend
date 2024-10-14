@@ -19,6 +19,8 @@ interface Payload {
  *   post:
  *     summary: Добавление банковской карты
  *     description: Добавление банковской карты по JWT клиента.
+ *     tags:
+ *       - BankCard
  *     security:
  *       - bearerAuth: []
  *     requestBody:

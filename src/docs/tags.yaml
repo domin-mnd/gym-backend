@@ -1,0 +1,7 @@
+tags:
+  - name: BankCard
+    description: Работа с банковскими картами клиента
+  - name: Client
+    description: Работа с учётными записями
+  - name: Employee
+    description: Управление сотрудниками

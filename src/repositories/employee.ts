@@ -1,8 +1,8 @@
-import type { Employee } from "kysely-codegen";
+import type { Client, Employee, EmployeeType } from "kysely-codegen";
 import { Repository } from ".";
 import type { Database } from "@/database";
 import { z } from "zod";
-import type { Selectable } from "kysely";
+import type { Insertable, Selectable } from "kysely";
 
 enum EmployeeSchema {
   Promote,
@@ -32,6 +32,28 @@ export class EmployeeRepository extends Repository<Employee> {
     super("employee", "employee_id", db);
   }
 
+  public async add(insertable: {
+    client_id: number;
+    employee_type: EmployeeType;
+    left_at?: Date;
+  }): Promise<Selectable<Employee> | Error> {
+    try {
+      const table = await this.db
+        .insertInto("employee")
+        .values({
+          ...insertable,
+          hired_at: new Date(),
+        })
+        .returningAll()
+        .executeTakeFirst();
+      return table;
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : String(error);
+      return new Error(message);
+    }
+  }
+
   public async delete(primaryKey: number): Promise<void> {
     await this.db
       .updateTable("employee")
@@ -48,5 +70,28 @@ export class EmployeeRepository extends Repository<Employee> {
       .selectAll()
       .where("client_id", "=", client_id)
       .executeTakeFirst();
+  }
+
+  public async getExpanded(): Promise<
+    Selectable<Omit<Client, "password_hash"> & Employee>[]
+  > {
+    return this.db
+      .selectFrom("employee")
+      .innerJoin("client", "client.client_id", "employee.client_id")
+      .select([
+        "employee.employee_id",
+        "employee.client_id",
+        "employee.employee_type",
+        "employee.left_at",
+        "employee.hired_at",
+        "client.created_at",
+        "client.email_address",
+        "client.first_name",
+        "client.last_name",
+        "client.patronymic",
+        "client.phone_number",
+        "client.profile_picture_url",
+      ])
+      .execute();
   }
 }

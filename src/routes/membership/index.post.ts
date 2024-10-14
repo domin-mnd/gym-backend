@@ -31,7 +31,7 @@ export default defineExpressRoute<{
     req.body.bank_card_id,
   );
 
-  if (!bankCard) return throwError(res, "Bank card not found");
+  if (!bankCard) return throwError(res, "Not found");
   if (bankCard.client_id !== res.locals.client.client_id)
     return throwError(res, "Unauthorized");
 

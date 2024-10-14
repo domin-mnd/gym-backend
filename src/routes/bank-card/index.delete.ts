@@ -15,6 +15,8 @@ interface Payload {
  *   delete:
  *     summary: Удаление банковской карты
  *     description: Удаление банковской карты по заранее известному ID карты. Удалить карту можно только свою относительно JWT.
+ *     tags:
+ *       - BankCard
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -42,6 +44,8 @@ interface Payload {
  *         $ref: '#/components/responses/BadRequest'
  *       401:
  *         $ref: '#/components/responses/Unauthorized'
+ *       404:
+ *         $ref: '#/components/responses/NotFound'
  */
 export default defineExpressRoute<{
   ReqBody: Payload;
@@ -55,7 +59,7 @@ export default defineExpressRoute<{
   const bankCard = await bankCardRepository.get(
     req.body.bank_card_id,
   );
-  if (!bankCard) return throwError(res, "Bank card not found");
+  if (!bankCard) return throwError(res, "Not found");
 
   if (bankCard.client_id !== res.locals.client.client_id)
     return throwError(res, "Unauthorized");

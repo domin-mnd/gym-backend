@@ -28,3 +28,18 @@ components:
                 example: false
               error:
                 $ref: "#/components/schemas/ValidationError"
+    NotFound:
+      description: По запросу ничего не найдено
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                description: Успешность запроса
+                example: false
+              error:
+                type: string
+                description: Ошибка
+                example: "Not found"

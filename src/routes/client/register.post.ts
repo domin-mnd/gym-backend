@@ -23,6 +23,8 @@ interface Payload
  *   post:
  *     summary: Регистрация нового клиента
  *     description: Регистрация клиента по введённым данным.
+ *     tags:
+ *       - Client
  *     requestBody:
  *       required: true
  *       content:

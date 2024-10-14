@@ -12,6 +12,8 @@ const sessionRepository = new SessionRepository(db);
  *   delete:
  *     summary: Выход из аккаунта
  *     description: Отзыв сессии клиента по JWT.
+ *     tags:
+ *       - Client
  *     security:
  *       - bearerAuth: []
  *     responses:

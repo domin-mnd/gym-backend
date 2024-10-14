@@ -21,7 +21,7 @@ export default defineExpressRoute<{
   const membership = await membershipRepository.get(
     req.body.membership_id,
   );
-  if (!membership) return throwError(res, "Membership not found");
+  if (!membership) return throwError(res, "Not found");
 
   if (membership.client_id !== res.locals.client.client_id)
     return throwError(res, "Unauthorized");

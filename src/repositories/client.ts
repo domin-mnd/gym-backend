@@ -7,6 +7,7 @@ import type { Selectable } from "kysely";
 enum ClientSchema {
   SignUp,
   SignIn,
+  Get,
 }
 
 export class ClientRepository extends Repository<Client> {
@@ -25,6 +26,9 @@ export class ClientRepository extends Repository<Client> {
     [this.Schema.SignIn]: z.object({
       email_address: z.string().min(1).max(255).email(),
       password: z.string().min(8),
+    }),
+    [this.Schema.Get]: z.object({
+      client_id: z.string().regex(/^\d+$/).transform(Number),
     }),
   };
 

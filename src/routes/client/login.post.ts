@@ -18,6 +18,8 @@ interface Payload {
  *   post:
  *     summary: Аутентификация клиента
  *     description: Аутентификация клиента по почте и паролю.
+ *     tags:
+ *       - Client
  *     requestBody:
  *       required: true
  *       content:
@@ -53,6 +55,8 @@ interface Payload {
  *         $ref: '#/components/responses/BadRequest'
  *       401:
  *         $ref: '#/components/responses/Unauthorized'
+ *       404:
+ *         $ref: '#/components/responses/NotFound'
  */
 export default defineExpressRoute<{
   ReqBody: Payload;
@@ -71,7 +75,7 @@ export default defineExpressRoute<{
     req.body.email_address,
   );
 
-  if (!client) return throwError(res, "Client not found");
+  if (!client) return throwError(res, "Not found");
   if (client.password_hash !== passwordHash)
     return throwError(res, "Incorrect password");
 

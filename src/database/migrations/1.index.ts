@@ -70,6 +70,7 @@ export async function up(db: Kysely<unknown>) {
     .addColumn("employee_type", sql`employee_type`, col =>
       col.notNull(),
     )
+    .addColumn("hired_at", "timestamp", col => col.notNull())
     .addColumn("left_at", "timestamp")
     .execute();
 
