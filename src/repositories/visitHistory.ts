@@ -6,7 +6,8 @@ import { z } from "zod";
 enum VisitHistorySchema {
   Enter,
   Leave,
-  History,
+  HistoryQuery,
+  HistoryParams,
 }
 
 export class VisitHistoryRepository extends Repository<VisitHistory> {
@@ -21,9 +22,11 @@ export class VisitHistoryRepository extends Repository<VisitHistory> {
       client_id: z.number().optional(),
       gym_id: z.number(),
     }),
-    [this.Schema.History]: z.object({
-      client_id: z.number().optional(),
+    [this.Schema.HistoryQuery]: z.object({
       range: z.string().datetime({ offset: true }).array().length(2),
+    }),
+    [this.Schema.HistoryParams]: z.object({
+      client_id: z.string().regex(/^\d+$/).transform(Number),
     }),
   };
 
