@@ -2,11 +2,16 @@ import type { Selectable } from "kysely";
 import type { VisitHistory } from "kysely-codegen";
 import { type ISODate, createDaysArray } from "./date";
 
+/**
+ * Parse visit history table array into a date graph.
+ * @param visitHistory - Array of visit_history objects.
+ * @param range - ISO date range to parse days array into.
+ * @returns Parsed record of iso dates with its values as visit length.
+ */
 export function getGraph(
   visitHistory: Selectable<Omit<VisitHistory, "client_id">>[],
   range: [string, string],
 ): Record<ISODate, number> {
-  // Group graph by days, then return how long they have been in the gym in seconds
   const periodArray = createDaysArray(0, range);
 
   for (const visit of visitHistory) {
