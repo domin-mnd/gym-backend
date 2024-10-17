@@ -22,7 +22,7 @@ jobs:
       - name: Build Documentation
         run: |
           bun install
-          bun scripts/buildDocs.ts
+          bun src/scripts/buildDocs.ts
       - name: Deploy API documentation
         uses: bump-sh/github-action@v1
         with:
@@ -41,7 +41,7 @@ jobs:
       - name: Build Documentation
         run: |
           bun install
-          bun scripts/buildDocs.ts
+          bun src/scripts/buildDocs.ts
       - name: Comment pull request with API diff
         uses: bump-sh/github-action@v1
         with:
