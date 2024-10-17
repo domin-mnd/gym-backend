@@ -15,9 +15,11 @@ runs:
       uses: oven-sh/setup-bun@v2
 
     - name: Install Dependencies
+      shell: bash
       run: bun install
 
     - name: Build Documentation
+      shell: bash
       run: bun src/scripts/buildDocs.ts
 
     - name: Upload Artifact
