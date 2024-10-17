@@ -9,6 +9,8 @@ on:
   pull_request:
     branches:
       - master
+env:
+  doc_slug: ${{ vars.DOC_SLUG }}
 jobs:
   deploy-doc:
     if: ${{ github.event_name == 'push' }}
@@ -24,7 +26,7 @@ jobs:
       - name: Deploy API documentation
         uses: bump-sh/github-action@v1
         with:
-          doc: gym
+          doc: ${{ env.doc_slug }}
           token: ${{ secrets.BUMP_TOKEN }}
           file: dist/openapi.yml
   api-diff:
@@ -41,7 +43,7 @@ jobs:
       - name: Comment pull request with API diff
         uses: bump-sh/github-action@v1
         with:
-          doc: gym
+          doc: ${{ env.doc_slug }}
           token: ${{ secrets.BUMP_TOKEN }}
           file: dist/openapi.yml
           command: diff
