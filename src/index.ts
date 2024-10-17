@@ -6,6 +6,8 @@ import {
   defineJsdoc,
   defineSwagger,
   defineYaml,
+  exportSpec,
+  getSpec,
 } from "@/utils/swagger";
 import {
   defineEnvironment,
@@ -17,7 +19,11 @@ import "dotenv/config";
 async function createServer(): Promise<Express> {
   const jsdoc = defineJsdoc("./src/routes/**/*.ts");
   const yaml = defineYaml("./src/docs/**/*.yaml");
-  const swagger = defineSwagger(jsdoc, yaml);
+  // Get single openApi spec
+  const openApiSpec = await getSpec(jsdoc, yaml);
+
+  const swagger = defineSwagger(openApiSpec);
+  await exportSpec(openApiSpec);
 
   const app = express()
     .use(express.json()) // Body parser

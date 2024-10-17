@@ -9,6 +9,7 @@
   - [Node](#node)
   - [Database](#database)
   - [Auth](#auth)
+  - [Documentation](#documentation)
   - [ERD](#erd)
 - [Getting started](#getting-started)
   - [Bun](#bun-1)
@@ -184,6 +185,10 @@ Along with that fill in `DATABASE_URL` environment variable.
 ### Auth
 
 Authentication requires no additional setup, just the `SALT` environment variable.
+
+### Documentation
+
+If you're willing to deploy your API to a [Bump.sh](https://bump.sh/) then you need to provide `BUMP_TOKEN` actions' environment variable for CI.
 
 ### ERD
 

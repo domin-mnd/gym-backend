@@ -21,6 +21,7 @@ const allowedUrls: Record<string, string[]> = {
   [`${prefix}/client/register`]: ["POST"],
   [`${prefix}/client/login`]: ["POST"],
   [`${prefix}/gym`]: ["GET"],
+  [`${prefix}/openapi`]: ["GET"],
   ...swaggerEndpoints.reduce<Record<string, string[]>>((acc, url) => {
     acc[url] = ["GET"];
     return acc;

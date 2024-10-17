@@ -5,3 +5,5 @@ tags:
     description: Работа с учётными записями
   - name: Employee
     description: Управление сотрудниками
+  - name: Documentation
+    description: Документация АПИ
