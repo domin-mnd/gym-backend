@@ -17,12 +17,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Bun
-        uses: oven-sh/setup-bun@v2
+
       - name: Build Documentation
-        run: |
-          bun install
-          bun src/scripts/buildDocs.ts
+        uses: ./.github/actions/docs-build
+
       - name: Deploy API documentation
         uses: bump-sh/github-action@v1
         with:
@@ -36,12 +34,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Bun
-        uses: oven-sh/setup-bun@v2
+
       - name: Build Documentation
-        run: |
-          bun install
-          bun src/scripts/buildDocs.ts
+        uses: ./.github/actions/docs-build
+
       - name: Comment pull request with API diff
         uses: bump-sh/github-action@v1
         with:
