@@ -25,7 +25,7 @@ jobs:
       - name: Build Documentation
         uses: ./.github/actions/docs-build
         with:
-          base_path: ${{ env.base_path }}
+          base-path: ${{ env.base_path }}
           host: ${{ env.host }}
 
       - name: Deploy API documentation
