@@ -11,7 +11,7 @@ interface Payload {
 
 /**
  * @openapi
- * /v0/bank-card:
+ * /bank-card:
  *   delete:
  *     summary: Delete Card
  *     description: Bank card deletion using an already known id. You can only delete your card using JWT.

@@ -6,7 +6,7 @@ const employeeRepository = new EmployeeRepository(db);
 
 /**
  * @openapi
- * /v0/employee:
+ * /employee:
  *   get:
  *     summary: Get Employees
  *     description: Get all employees, even fired ones.

@@ -19,7 +19,7 @@ type PayloadParams = {
 
 /**
  * @openapi
- * /v0/gym/history/{client_id}:
+ * /gym/history/{client_id}:
  *   get:
  *     summary: Get History
  *     description: Get any client's gym visit history using their client_id.

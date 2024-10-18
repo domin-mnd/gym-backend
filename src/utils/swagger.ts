@@ -24,6 +24,9 @@ export function defineJsdoc(routes: string): JsonObject {
   return swaggerJsdoc({
     definition: {
       openapi: "3.1.0",
+      basePath: process.env.OPENAPI_BASE_PATH,
+      host: process.env.OPENAPI_BASE_PATH,
+      schemes: ["http"],
       info: {
         title: "Gym API",
         version,

@@ -14,7 +14,7 @@ interface Payload {
 
 /**
  * @openapi
- * /v0/client/login:
+ * /client/login:
  *   post:
  *     summary: Authentication
  *     description: Client authentication using email and password.

@@ -19,7 +19,7 @@ interface Payload
 
 /**
  * @openapi
- * /v0/client/register:
+ * /client/register:
  *   post:
  *     summary: Registration
  *     description: Register new client with given input.

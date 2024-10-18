@@ -6,7 +6,7 @@ const spec = await getSpec();
 
 /**
  * @openapi
- * /v0/openapi:
+ * /openapi:
  *   get:
  *     summary: Get OpenAPI Docs
  *     description: Get JSON object, representing OpenAPI specification docs.

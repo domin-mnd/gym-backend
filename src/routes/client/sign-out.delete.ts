@@ -8,7 +8,7 @@ const sessionRepository = new SessionRepository(db);
 
 /**
  * @openapi
- * /v0/client/sign-out:
+ * /client/sign-out:
  *   delete:
  *     summary: Sign Out
  *     description: Client's session revoke.

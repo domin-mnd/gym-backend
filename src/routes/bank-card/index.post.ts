@@ -15,7 +15,7 @@ interface Payload {
 
 /**
  * @openapi
- * /v0/bank-card:
+ * /bank-card:
  *   post:
  *     summary: Add Card
  *     description: Add new client's bank card using its JWT.

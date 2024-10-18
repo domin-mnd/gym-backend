@@ -12,7 +12,7 @@ type Payload = {
 
 /**
  * @openapi
- * /v0/client/{client_id}:
+ * /client/{client_id}:
  *   get:
  *     summary: Get Client
  *     description: Get any client's information using their client_id.

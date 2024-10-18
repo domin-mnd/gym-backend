@@ -3,7 +3,7 @@ import { defineExpressRoute } from "storona";
 
 /**
  * @openapi
- * /v0/client:
+ * /client:
  *   get:
  *     summary: Get Client
  *     description: Get own information using JWT.

@@ -14,7 +14,7 @@ interface Payload {
 
 /**
  * @openapi
- * /v0/employee:
+ * /employee:
  *   post:
  *     summary: Hire Employee
  *     description: Hire client as an employee in gym. You can only hire an employee if you're ADMIN.

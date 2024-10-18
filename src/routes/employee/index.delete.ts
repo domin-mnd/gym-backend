@@ -11,7 +11,7 @@ interface Payload {
 
 /**
  * @openapi
- * /v0/employee:
+ * /employee:
  *   delete:
  *     summary: Fire Employee
  *     description: Fire an employee using their id (employee_id, not client_id). You can only fire an employee if you're ADMIN.

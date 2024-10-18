@@ -188,6 +188,8 @@ Authentication requires no additional setup, just the `SALT` environment variabl
 
 ### Documentation
 
+In order to correctly setup OpenAPI Documentation, please fill `OPENAPI_BASE_PATH` and `OPENAPI_HOST` environment variables as stated [here](https://swagger.io/docs/specification/v2_0/api-host-and-base-path/).
+
 If you're willing to deploy your API to a [Bump.sh](https://bump.sh/) then you need to provide `BUMP_TOKEN` actions' environment variable for CI.
 
 ### ERD

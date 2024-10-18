@@ -7,7 +7,7 @@ const bankCardRepository = new BankCardRepository(db);
 
 /**
  * @openapi
- * /v0/bank-card:
+ * /bank-card:
  *   get:
  *     summary: Get Cards
  *     description: Get client's bank cards using JWT.
