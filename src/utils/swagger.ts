@@ -36,6 +36,16 @@ export function defineJsdoc(routes: string): JsonObject {
   });
 }
 
+export function defineDefaults(): JsonObject {
+  return {
+    servers: [
+      {
+        url: `http://${process.env.OPENAPI_HOST}${process.env.OPENAPI_BASE_PATH}`,
+      },
+    ],
+  };
+}
+
 const SPEC_DIR = "dist";
 const SPEC_PATH_JSON = "dist/openapi.json";
 const SPEC_PATH_YAML = "dist/openapi.yml";

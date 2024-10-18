@@ -1,4 +1,5 @@
 import {
+  defineDefaults,
   defineJsdoc,
   defineYaml,
   exportSpec,
@@ -15,7 +16,8 @@ main();
 async function main() {
   const jsdoc = defineJsdoc("./src/routes/**/*.ts");
   const yaml = defineYaml("./src/docs/**/*.yaml");
-  const openApiSpec = await getSpec(jsdoc, yaml);
+  const defaults = defineDefaults();
+  const openApiSpec = await getSpec(jsdoc, yaml, defaults);
 
   await exportSpec(openApiSpec);
 }

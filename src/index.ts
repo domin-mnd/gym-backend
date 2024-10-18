@@ -3,6 +3,7 @@ import { createRouter } from "storona";
 import { logRoutes } from "@/utils/logger";
 import { middleware } from "@/middleware";
 import {
+  defineDefaults,
   defineJsdoc,
   defineSwagger,
   defineYaml,
@@ -19,8 +20,9 @@ import "dotenv/config";
 async function createServer(): Promise<Express> {
   const jsdoc = defineJsdoc("./src/routes/**/*.ts");
   const yaml = defineYaml("./src/docs/**/*.yaml");
+  const defaults = defineDefaults();
   // Get single openApi spec
-  const openApiSpec = await getSpec(jsdoc, yaml);
+  const openApiSpec = await getSpec(jsdoc, yaml, defaults);
 
   const swagger = defineSwagger(openApiSpec);
   await exportSpec(openApiSpec);
