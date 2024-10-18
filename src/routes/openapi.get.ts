@@ -2,7 +2,7 @@ import { getSpec } from "@/utils/swagger";
 import type { ClientLocals } from "@/utils/types";
 import { defineExpressRoute } from "storona";
 
-const spec = await getSpec();
+const spec = getSpec();
 
 /**
  * @openapi
@@ -23,5 +23,5 @@ const spec = await getSpec();
 export default defineExpressRoute<{
   Locals: ClientLocals;
 }>(async (_req, res) => {
-  res.json(spec);
+  res.json(await spec);
 });

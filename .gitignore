@@ -4,6 +4,7 @@ out
 dist
 
 # Korob
+.korob
 .prettierignore
 .prettierrc.json
 biome.json
