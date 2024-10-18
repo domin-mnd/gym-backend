@@ -28,10 +28,10 @@ runs:
 
     - name: Build Documentation
       shell: bash
+      run: bun src/scripts/buildDocs.ts
       env:
         OPENAPI_BASE_PATH: ${{ inputs.base-path }}
         OPENAPI_HOST: ${{ inputs.host }}
-      run: bun src/scripts/buildDocs.ts
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4

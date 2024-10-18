@@ -9,10 +9,6 @@ on:
   pull_request:
     branches:
       - master
-env:
-  doc_slug: ${{ vars.DOC_SLUG }}
-  base_path: ${{ vars.OPENAPI_BASE_PATH }}
-  host: ${{ vars.OPENAPI_HOST }}
 jobs:
   deploy-doc:
     if: ${{ github.event_name == 'push' }}
@@ -25,13 +21,13 @@ jobs:
       - name: Build Documentation
         uses: ./.github/actions/docs-build
         with:
-          base-path: ${{ env.base_path }}
-          host: ${{ env.host }}
+          base-path: ${{ vars.OPENAPI_BASE_PATH }}
+          host: ${{ vars.OPENAPI_HOST }}
 
       - name: Deploy API documentation
         uses: bump-sh/github-action@v1
         with:
-          doc: ${{ env.doc_slug }}
+          doc: ${{ vars.DOC_SLUG }}
           token: ${{ secrets.BUMP_TOKEN }}
           file: dist/openapi.yml
   api-diff:
@@ -44,11 +40,14 @@ jobs:
 
       - name: Build Documentation
         uses: ./.github/actions/docs-build
+        with:
+          base-path: ${{ vars.OPENAPI_BASE_PATH }}
+          host: ${{ vars.OPENAPI_HOST }}
 
       - name: Comment pull request with API diff
         uses: bump-sh/github-action@v1
         with:
-          doc: ${{ env.doc_slug }}
+          doc: ${{ vars.DOC_SLUG }}
           token: ${{ secrets.BUMP_TOKEN }}
           file: dist/openapi.yml
           command: diff

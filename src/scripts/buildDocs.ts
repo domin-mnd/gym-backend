@@ -4,6 +4,7 @@ import {
   exportSpec,
   getSpec,
 } from "@/utils/swagger";
+import "dotenv/config";
 
 main();
 
