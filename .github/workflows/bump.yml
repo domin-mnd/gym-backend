@@ -11,6 +11,8 @@ on:
       - master
 env:
   doc_slug: ${{ vars.DOC_SLUG }}
+  base_path: ${{ vars.OPENAPI_BASE_PATH }}
+  host: ${{ vars.OPENAPI_HOST }}
 jobs:
   deploy-doc:
     if: ${{ github.event_name == 'push' }}
@@ -22,6 +24,9 @@ jobs:
 
       - name: Build Documentation
         uses: ./.github/actions/docs-build
+        with:
+          base_path: ${{ env.base_path }}
+          host: ${{ env.host }}
 
       - name: Deploy API documentation
         uses: bump-sh/github-action@v1

@@ -1,5 +1,13 @@
 name: Documentation Building
 
+inputs:
+  base-path:
+    description: "OpenAPI base path for API tests"
+    required: true
+  host:
+    description: "OpenAPI host for API tests"
+    required: true
+
 runs:
   using: "composite"
   steps:
@@ -20,9 +28,6 @@ runs:
 
     - name: Build Documentation
       shell: bash
-      env:
-        OPENAPI_BASE_PATH: ${{ vars.OPENAPI_BASE_PATH }}
-        OPENAPI_HOST: ${{ vars.OPENAPI_HOST }}
       run: bun src/scripts/buildDocs.ts
 
     - name: Upload Artifact
