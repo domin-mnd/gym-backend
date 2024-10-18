@@ -1,4 +1,5 @@
 import express, { type Express } from "express";
+import helmet from "helmet";
 import { createRouter } from "storona";
 import { logRoutes } from "@/utils/logger";
 import { middleware } from "@/middleware";
@@ -16,6 +17,7 @@ import {
   printReady,
 } from "@/utils/server";
 import "dotenv/config";
+import { defineRatelimit } from "./utils/ratelimit";
 
 async function createServer(): Promise<Express> {
   const jsdoc = defineJsdoc("./src/routes/**/*.ts");
@@ -27,8 +29,12 @@ async function createServer(): Promise<Express> {
   const swagger = defineSwagger(openApiSpec);
   await exportSpec(openApiSpec);
 
+  const limiter = defineRatelimit();
+
   const app = express()
     .use(express.json()) // Body parser
+    .use(helmet()) // Helmet
+    .use(limiter) // Add ratelimits - 100 reqs per 5 minutes
     .use(...middleware) // src/middleware/...
     .use("/docs", ...swagger);
 
