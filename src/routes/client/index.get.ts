@@ -5,15 +5,15 @@ import { defineExpressRoute } from "storona";
  * @openapi
  * /v0/client:
  *   get:
- *     summary: Получение информации о себе
- *     description: Получение информации о себе по JWT.
+ *     summary: Get Client
+ *     description: Get own information using JWT.
  *     tags:
  *       - Client
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Успешное получение
+ *         description: Successful retrieval of client's information.
  *         content:
  *           application/json:
  *             schema:
@@ -21,7 +21,7 @@ import { defineExpressRoute } from "storona";
  *               properties:
  *                 success:
  *                   type: boolean
- *                   description: Успешно ли получение.
+ *                   description: Whether the retrieval is successful
  *                   example: true
  *                 client:
  *                   $ref: '#/components/schemas/Client'

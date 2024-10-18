@@ -14,8 +14,8 @@ type Payload = {
  * @openapi
  * /v0/client/{client_id}:
  *   get:
- *     summary: Получение информации о другом клиенте
- *     description: Получение информации о другом клиенте.
+ *     summary: Get Client
+ *     description: Get any client's information using their client_id.
  *     tags:
  *       - Client
  *     security:
@@ -26,10 +26,10 @@ type Payload = {
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID клиента
+ *         description: Id of the client in database
  *     responses:
  *       200:
- *         description: Успешное получение
+ *         description: Successful retrieval of client's information.
  *         content:
  *           application/json:
  *             schema:
@@ -37,7 +37,7 @@ type Payload = {
  *               properties:
  *                 success:
  *                   type: boolean
- *                   description: Успешно ли получение.
+ *                   description: Whether the retrieval is successful
  *                   example: true
  *                 client:
  *                   $ref: '#/components/schemas/Client'

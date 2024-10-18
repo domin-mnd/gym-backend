@@ -16,8 +16,8 @@ interface Payload {
  * @openapi
  * /v0/client/login:
  *   post:
- *     summary: Аутентификация клиента
- *     description: Аутентификация клиента по почте и паролю.
+ *     summary: Authentication
+ *     description: Client authentication using email and password.
  *     tags:
  *       - Client
  *     requestBody:
@@ -29,15 +29,15 @@ interface Payload {
  *             properties:
  *               email_address:
  *                 type: string
- *                 description: Почта клиента
+ *                 description: Client's email address
  *                 example: "Og0rB@example.com"
  *               password:
  *                 type: string
- *                 description: Пароль клиента
+ *                 description: Client's correct password (non-hashed)
  *                 example: "1234567890"
  *     responses:
  *       200:
- *         description: Успешная аутентификация клиента
+ *         description: Successful client authentication.
  *         content:
  *           application/json:
  *             schema:
@@ -45,7 +45,7 @@ interface Payload {
  *               properties:
  *                 success:
  *                   type: boolean
- *                   description: Успешность запроса
+ *                   description: Whether authentication is successful
  *                   example: true
  *                 session:
  *                   $ref: '#/components/schemas/Session'

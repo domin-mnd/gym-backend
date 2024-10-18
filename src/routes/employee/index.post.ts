@@ -16,8 +16,8 @@ interface Payload {
  * @openapi
  * /v0/employee:
  *   post:
- *     summary: Найм клиента в качестве сотрудника
- *     description: Найм нового сотрудника используя учётную запись клиента (клиент превращается в сотрудника). Нанять можно только при условии что сам вызов запроса происходит от сотрудника администратора.
+ *     summary: Hire Employee
+ *     description: Hire client as an employee in gym. You can only hire an employee if you're ADMIN.
  *     tags:
  *       - Employee
  *     security:
@@ -31,17 +31,17 @@ interface Payload {
  *             properties:
  *               client_id:
  *                 type: number
- *                 description: ID клиента (получить можно с помощью GET /v0/client)
+ *                 description: Id of the client in database (you can get it via GET /v0/client)
  *               employee_type:
  *                 type: string
- *                 description: Тип сотрудника
+ *                 description: Employee's job posting
  *               left_at:
  *                 type: string
  *                 format: date
- *                 description: Дата увольнения сотрудника (не обязательное поле)
+ *                 description: Employee's firing date (can be undefined)
  *     responses:
  *       200:
- *         description: Добавление нового сотрудника
+ *         description: Successfully hired new employee.
  *         content:
  *           application/json:
  *             schema:
@@ -49,33 +49,33 @@ interface Payload {
  *               properties:
  *                 success:
  *                   type: boolean
- *                   description: Успешно ли добавление.
+ *                   description: Whether an employee is hired
  *                   example: true
  *                 employee:
  *                   type: object
  *                   properties:
  *                     client_id:
  *                       type: number
- *                       description: Идентификатор клиента из БД
+ *                       description: Id of the client in database
  *                       example: 1
  *                     employee_id:
  *                       type: number
- *                       description: Идентификатор сотрудника из БД
+ *                       description: Id of the employee in database
  *                       example: 1
  *                     employee_type:
  *                       type: string
  *                       enum: [ADMIN, INSTRUCTOR, TRAINER]
- *                       description: Тип сотрудника
+ *                       description: Employee's current job posting
  *                       example: "ADMIN"
  *                     left_at:
  *                       type: string
  *                       format: date
- *                       description: Дата увольнения сотрудника (не обязательное поле)
+ *                       description: Employee's firing date (can be undefined)
  *                       example: "2024-10-15T19:12:03.028Z"
  *                     hired_at:
  *                       type: string
  *                       format: date
- *                       description: Дата приема на работу сотрудника
+ *                       description: Employee's hiring date
  *                       example: "2024-10-10T18:36:47.668Z"
  *       400:
  *         $ref: '#/components/responses/BadRequest'

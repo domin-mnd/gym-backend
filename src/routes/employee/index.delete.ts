@@ -13,8 +13,8 @@ interface Payload {
  * @openapi
  * /v0/employee:
  *   delete:
- *     summary: Увольнение сотрудника
- *     description: Фактическое увольнение сотрудника по его ID (не client_id, а employee_id). Уволить можно только при условии что сам вызов запроса происходит от сотрудника администратора.
+ *     summary: Fire Employee
+ *     description: Fire an employee using their id (employee_id, not client_id). You can only fire an employee if you're ADMIN.
  *     tags:
  *       - Employee
  *     security:
@@ -28,10 +28,10 @@ interface Payload {
  *             properties:
  *               employee_id:
  *                 type: number
- *                 description: ID сотрудника (получить можно с помощью GET /v0/employee)
+ *                 description: Id of the employee in database (you can get it via GET /v0/employee)
  *     responses:
  *       200:
- *         description: Увольнение сотрудника
+ *         description: Successfully fired an employee.
  *         content:
  *           application/json:
  *             schema:
@@ -39,7 +39,7 @@ interface Payload {
  *               properties:
  *                 success:
  *                   type: boolean
- *                   description: Успешно ли увольнение.
+ *                   description: Whether the an employee is fired
  *                   example: true
  *       400:
  *         $ref: '#/components/responses/BadRequest'

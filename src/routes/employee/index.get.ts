@@ -8,15 +8,15 @@ const employeeRepository = new EmployeeRepository(db);
  * @openapi
  * /v0/employee:
  *   get:
- *     summary: Список сотрудников
- *     description: Получение абсолютно всех сотрудников, включая уволенных.
+ *     summary: Get Employees
+ *     description: Get all employees, even fired ones.
  *     tags:
  *       - Employee
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Получение списка сотрудников
+ *         description: Successful employee retrieval.
  *         content:
  *           application/json:
  *             schema:
@@ -24,7 +24,7 @@ const employeeRepository = new EmployeeRepository(db);
  *               properties:
  *                 success:
  *                   type: boolean
- *                   description: Успешно ли получение.
+ *                   description: Whether the retrieval is successful
  *                   example: true
  *                 employee:
  *                   type: array

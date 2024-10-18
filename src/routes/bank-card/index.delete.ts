@@ -13,8 +13,8 @@ interface Payload {
  * @openapi
  * /v0/bank-card:
  *   delete:
- *     summary: Удаление банковской карты
- *     description: Удаление банковской карты по заранее известному ID карты. Удалить карту можно только свою относительно JWT.
+ *     summary: Delete Card
+ *     description: Bank card deletion using an already known id. You can only delete your card using JWT.
  *     tags:
  *       - BankCard
  *     security:
@@ -28,10 +28,10 @@ interface Payload {
  *             properties:
  *               bank_card_id:
  *                 type: number
- *                 description: ID банковской карты (получить можно с помощью GET /v0/bank-card)
+ *                 description: Bank card ID (retrieved using GET /v0/bank-card)
  *     responses:
  *       200:
- *         description: Удаление банковской карты
+ *         description: Successful bank card deletion.
  *         content:
  *           application/json:
  *             schema:
@@ -39,7 +39,7 @@ interface Payload {
  *               properties:
  *                 success:
  *                   type: boolean
- *                   description: Успешно ли удаление.
+ *                   description: Whether bank card is deleted
  *       400:
  *         $ref: '#/components/responses/BadRequest'
  *       401:

@@ -17,8 +17,8 @@ interface Payload {
  * @openapi
  * /v0/bank-card:
  *   post:
- *     summary: Добавление банковской карты
- *     description: Добавление банковской карты по JWT клиента.
+ *     summary: Add Card
+ *     description: Add new client's bank card using its JWT.
  *     tags:
  *       - BankCard
  *     security:
@@ -32,24 +32,24 @@ interface Payload {
  *             properties:
  *               card_number:
  *                 type: string
- *                 description: Номер банковской карты
+ *                 description: Bank card number
  *                 example: "4242424242424242"
  *               cardholder_name:
  *                 type: string
- *                 description: Держатель банковской карты
+ *                 description: Owner of the card
  *                 example: "SAKHABUTDINOV KAMIL"
  *               expires_at:
  *                 type: string
  *                 format: date
- *                 description: Срок действия банковской карты
+ *                 description: Card's expiration date
  *                 example: "2025-01-01"
  *               cvv:
  *                 type: string
- *                 description: CVC/CVV код
+ *                 description: CVC/CVV
  *                 example: "123"
  *     responses:
  *       200:
- *         description: Добавление банковской карты
+ *         description: Successful adding of a new card.
  *         content:
  *           application/json:
  *             schema:
@@ -57,7 +57,7 @@ interface Payload {
  *               properties:
  *                 success:
  *                   type: boolean
- *                   description: Успешно ли добавление.
+ *                   description: Whether card was added
  *                   example: true
  *                 bank_card:
  *                   $ref: '#/components/schemas/BankCard'

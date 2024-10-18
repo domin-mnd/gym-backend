@@ -1,7 +1,7 @@
 components:
   responses:
     Unauthorized:
-      description: Не авторизован
+      description: User is not unauthorized or permissions are missing.
       content:
         application/json:
           schema:
@@ -9,14 +9,14 @@ components:
             properties:
               success:
                 type: boolean
-                description: Успешность запроса
+                description: Whether query is successful
                 example: false
               error:
                 type: string
-                description: Сообщение об ошибке
+                description: Error message
                 example: "Unauthorized"
     BadRequest:
-      description: Ошибка валидации
+      description: Validation error of given input.
       content:
         application/json:
           schema:
@@ -24,12 +24,12 @@ components:
             properties:
               success:
                 type: boolean
-                description: Успешность запроса
+                description: Whether query is successful
                 example: false
               error:
                 $ref: "#/components/schemas/ValidationError"
     NotFound:
-      description: По запросу ничего не найдено
+      description: Nothing found with given input.
       content:
         application/json:
           schema:
@@ -37,9 +37,9 @@ components:
             properties:
               success:
                 type: boolean
-                description: Успешность запроса
+                description: Whether query is successful
                 example: false
               error:
                 type: string
-                description: Ошибка
+                description: Error message
                 example: "Not found"

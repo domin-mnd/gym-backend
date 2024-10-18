@@ -8,13 +8,13 @@ const spec = await getSpec();
  * @openapi
  * /v0/openapi:
  *   get:
- *     summary: Получение документации в виде OpenAPI спецификации
- *     description: Получение JSON объекта, представляющего OpenAPI спецификацию документации.
+ *     summary: Get OpenAPI Docs
+ *     description: Get JSON object, representing OpenAPI specification docs.
  *     tags:
  *       - Documentation
  *     responses:
  *       200:
- *         description: Успешное получение объекта документации
+ *         description: Successful documentation retrieval.
  *         content:
  *           application/json:
  *             schema:

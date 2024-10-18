@@ -21,8 +21,8 @@ type PayloadParams = {
  * @openapi
  * /v0/gym/history/{client_id}:
  *   get:
- *     summary: Получение информации о другом клиенте
- *     description: Получение информации о другом клиенте.
+ *     summary: Get History
+ *     description: Get any client's gym visit history using their client_id.
  *     tags:
  *       - Client
  *     security:
@@ -33,7 +33,7 @@ type PayloadParams = {
  *         required: true
  *         schema:
  *           type: integer
- *         description: ID клиента
+ *         description: Id of the client in database
  */
 export default defineExpressRoute<{
   ReqQuery: PayloadQs;

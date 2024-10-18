@@ -1,9 +1,9 @@
 tags:
   - name: BankCard
-    description: Работа с банковскими картами клиента
+    description: Bank card manipulation
   - name: Client
-    description: Работа с учётными записями
+    description: Client's profile management
   - name: Employee
-    description: Управление сотрудниками
+    description: Employee management
   - name: Documentation
-    description: Документация АПИ
+    description: Related to API Documentation

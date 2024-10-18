@@ -9,15 +9,15 @@ const bankCardRepository = new BankCardRepository(db);
  * @openapi
  * /v0/bank-card:
  *   get:
- *     summary: Получение банковских карт клиента
- *     description: Получение банковских карт по JWT клиента.
+ *     summary: Get Cards
+ *     description: Get client's bank cards using JWT.
  *     tags:
  *       - BankCard
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Получение банковских карт
+ *         description: Successful retrieval of bank cards.
  *         content:
  *           application/json:
  *             schema:
@@ -25,7 +25,7 @@ const bankCardRepository = new BankCardRepository(db);
  *               properties:
  *                 success:
  *                   type: boolean
- *                   description: Успешно ли получение.
+ *                   description: Whether the retrieval is successful
  *                   example: true
  *                 bank_card:
  *                   type: array

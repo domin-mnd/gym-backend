@@ -4,29 +4,29 @@ components:
       type: array
       items:
         type: object
-        description: Ошибка валидации
+        description: Validation error of given input.
         properties:
           code:
             type: string
-            description: Тип ошибки
+            description: Error type
             example: "invalid_type"
           expected:
             type: string
-            description: Тип ожидаемого значения
+            description: What was expected
             example: "string"
           received:
             type: string
-            description: Тип полученного значения
+            description: What's the error
             example: "undefined"
           path:
             type: array
-            description: Путь до ошибки
+            description: What caused an error
             items:
               type: string
               example: "client_id"
           message:
             type: string
-            description: Сообщение об ошибке
+            description: Error description
             example: "Required"
     BankCard:
       type: object
@@ -40,23 +40,23 @@ components:
       properties:
         bank_card_id:
           type: integer
-          description: Идентификатор банковской карты из БД
+          description: Id of the card in database
         card_number:
           type: string
-          description: Номер банковской карты
+          description: Bank card number
         cardholder_name:
           type: string
-          description: Держатель банковской карты
+          description: Owner of the card
         client_id:
           type: integer
-          description: Идентификатор клиента из БД
+          description: Id of the client in database
         cvv:
           type: string
-          description: CVC/CVV код
+          description: CVC/CVV
         expires_at:
           type: string
           format: date
-          description: Дата окончания действия банковской карты
+          description: Card's expiration date
       example:
         bank_card_id: 1
         card_number: "1234567890123456"
@@ -77,29 +77,29 @@ components:
       properties:
         client_id:
           type: integer
-          description: Идентификатор клиента из БД
+          description: Id of the client in database
         created_at:
           type: string
           format: date
-          description: Дата создания аккаунта
+          description: Account creation date
         email_address:
           type: string
-          description: Адрес электронной почты
+          description: Client's email address
         first_name:
           type: string
-          description: Имя
+          description: Client's first name
         last_name:
           type: string
-          description: Фамилия
+          description: Client's last name
         patronymic:
           type: string
-          description: Отчество
+          description: Client's patronymic/middle name
         phone_number:
           type: string
-          description: Номер телефона
+          description: Client's phone number
         profile_picture_url:
           type: string
-          description: URL изображения профиля
+          description: Link to client's profile picture, typically uploaded using POST /v0/profile-picture
       example:
         client_id: 1
         created_at: "2024-10-10T18:36:47.668Z"
@@ -121,20 +121,20 @@ components:
         created_at:
           type: string
           format: date
-          description: Дата создания сессии
+          description: Session creation date
         expires_at:
           type: string
           format: date
-          description: Дата окончания сессии
+          description: Session expiry date
         jwt:
           type: string
-          description: JWT токен
+          description: Generated JWT
         revoked:
           type: boolean
-          description: Признак отзыва сессии
+          description: Whether this session is revoked
         session_id:
           type: integer
-          description: Идентификатор сессии
+          description: Id of the session in database
       example:
         session_id: 1
         created_at: "2024-10-10T18:36:47.668Z"
@@ -158,40 +158,40 @@ components:
       properties:
         employee_id:
           type: integer
-          description: Идентификатор сотрудника из БД
+          description: Id of the employee in database
         client_id:
           type: integer
-          description: Идентификатор клиента из БД
+          description: Id of the client in database
         employee_type:
           type: string
           enum: [ADMIN, INSTRUCTOR, TRAINER]
-          description: Тип сотрудника
+          description: Employee's current job posting
         left_at:
           type: string
           format: date
-          description: Дата увольнения сотрудника (null если сотрудник не уволен)
+          description: Employee's firing date (null if employee wasn't fired yet)
         created_at:
           type: string
           format: date
-          description: Дата создания сотрудника
+          description: Employee's hiring date
         email_address:
           type: string
-          description: Адрес электронной почты
+          description: Employee's email
         first_name:
           type: string
-          description: Имя
+          description: Employee's first name
         last_name:
           type: string
-          description: Фамилия
+          description: Employee's last name
         patronymic:
           type: string
-          description: Отчество
+          description: Employee's patronymic/middle name
         phone_number:
           type: string
-          description: Номер телефона
+          description: Employee's phone number
         profile_picture_url:
           type: string
-          description: URL изображения профиля
+          description: Link to client's profile picture, typically uploaded using POST /v0/profile-picture
       example:
         employee_id: 1
         client_id: 1

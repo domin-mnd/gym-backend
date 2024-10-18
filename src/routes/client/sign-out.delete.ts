@@ -8,17 +8,17 @@ const sessionRepository = new SessionRepository(db);
 
 /**
  * @openapi
- * /v0/client/signout:
+ * /v0/client/sign-out:
  *   delete:
- *     summary: Выход из аккаунта
- *     description: Отзыв сессии клиента по JWT.
+ *     summary: Sign Out
+ *     description: Client's session revoke.
  *     tags:
  *       - Client
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Успешный отзыв сессии
+ *         description: Successful given session revoke.
  *         content:
  *           application/json:
  *             schema:
@@ -26,7 +26,7 @@ const sessionRepository = new SessionRepository(db);
  *               properties:
  *                 success:
  *                   type: boolean
- *                   description: Успешен ли отзыв.
+ *                   description: Whether session is revoked
  *                   example: true
  *       400:
  *         $ref: "#/components/responses/BadRequest"

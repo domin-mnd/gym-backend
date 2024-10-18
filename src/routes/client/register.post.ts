@@ -21,8 +21,8 @@ interface Payload
  * @openapi
  * /v0/client/register:
  *   post:
- *     summary: Регистрация нового клиента
- *     description: Регистрация клиента по введённым данным.
+ *     summary: Registration
+ *     description: Register new client with given input.
  *     tags:
  *       - Client
  *     requestBody:
@@ -34,35 +34,35 @@ interface Payload
  *             properties:
  *               email_address:
  *                 type: string
- *                 description: Адрес электронной почты
+ *                 description: Client's email address
  *                 example: "Og0rB@example.com"
  *               password:
  *                 type: string
- *                 description: Пароль клиента
+ *                 description: Client's password (at least 8 characters long)
  *                 example: "1234567890"
  *               first_name:
  *                 type: string
- *                 description: Имя
+ *                 description: Client's first name
  *                 example: "Иван"
  *               last_name:
  *                 type: string
- *                 description: Фамилия
+ *                 description: Client's last name
  *                 example: "Иванов"
  *               patronymic:
  *                 type: string
- *                 description: Отчество
+ *                 description: Client's patronymic/middle name
  *                 example: "Иванович"
  *               phone_number:
  *                 type: string
- *                 description: Номер телефона
+ *                 description: Client's phone number
  *                 example: "79174236278"
  *               profile_picture_url:
  *                 type: string
- *                 description: URL изображения профиля
+ *                 description: Link to client's profile picture, typically uploaded using POST /v0/profile-picture
  *                 example: "https://example.com/profile_picture.jpg"
  *     responses:
  *       200:
- *         description: Успешная регистрация нового клиента
+ *         description: Successful client registration.
  *         content:
  *           application/json:
  *             schema:
@@ -70,7 +70,7 @@ interface Payload
  *               properties:
  *                 success:
  *                   type: boolean
- *                   description: Успешность запроса
+ *                   description: Whether client is registered
  *                   example: true
  *                 session:
  *                   $ref: '#/components/schemas/Session'
