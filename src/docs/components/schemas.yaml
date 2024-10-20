@@ -263,3 +263,48 @@ components:
         street: "Хади Такташа"
         building: "24"
         description: "Фитнес-клуб премиум-класса, расположенный в самом сердце Казани."
+    PaymentHistory:
+      type: object
+      required:
+        - payment_history_id
+        - type
+        - client_id
+      properties:
+        payment_history_id:
+          type: integer
+          description: Id of the payment in database
+        type:
+          type: string
+          enum: [membership, trainer_appointment]
+          description: Type of the payment
+        client_id:
+          type: integer
+          description: Id of the client in database
+        level_type:
+          type: string
+          enum: [SIMPLE, INFINITY, PREMIUM]
+          description: Membership level
+        created_at:
+          type: string
+          format: date
+          description: Payment creation date
+        employee_id:
+          type: integer
+          description: Id of the employee in database
+        gym_id:
+          type: integer
+          description: Id of the gym in database
+        appointed_at:
+          type: string
+          format: date
+          description: Appointment start date
+        ends_at:
+          type: string
+          format: date
+          description: Appointment end date
+      example:
+        payment_history_id: 1
+        type: "membership"
+        client_id: 1
+        level_type: "SIMPLE"
+        created_at: "2024-10-10T18:36:47.668Z"

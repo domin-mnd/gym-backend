@@ -7,5 +7,7 @@ tags:
     description: Employee management
   - name: Gym
     description: Gym-related operations
+  - name: PaymentHistory
+    description: Payment history lookup
   - name: Documentation
     description: Related to API Documentation
