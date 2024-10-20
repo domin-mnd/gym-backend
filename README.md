@@ -197,7 +197,15 @@ If you're willing to deploy your API to a [Bump.sh](https://bump.sh/) then you n
 
 ### S3
 
-To use S3, you need to provide `S3_ENDPOINT`, `S3_PORT`, `S3_ACCESS_KEY` & `S3_SECRET_KEY` environment variables. Project uses [MinIO](https://min.io/) as a local S3 provider.
+To use S3, you need to provide `S3_ENDPOINT`, `S3_PORT`, `S3_ACCESS_KEY` & `S3_SECRET_KEY` environment variables.
+
+Project uses [MinIO](https://min.io/) as a local S3 provider. To run a local instance, use following script:
+
+```bash
+$ wget https://dl.min.io/server/minio/release/linux-amd64/minio
+$ chmod +x minio
+$ ./minio server /data
+```
 
 ### ERD
 
