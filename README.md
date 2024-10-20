@@ -10,6 +10,7 @@
   - [Database](#database)
   - [Auth](#auth)
   - [Documentation](#documentation)
+  - [S3](#s3)
   - [ERD](#erd)
 - [Getting started](#getting-started)
   - [Bun](#bun-1)
@@ -193,6 +194,10 @@ Authentication requires no additional setup, just the `SALT` environment variabl
 In order to correctly setup OpenAPI Documentation, please fill `OPENAPI_BASE_PATH` and `OPENAPI_HOST` environment variables as stated [here](https://swagger.io/docs/specification/v2_0/api-host-and-base-path/).
 
 If you're willing to deploy your API to a [Bump.sh](https://bump.sh/) then you need to provide `BUMP_TOKEN` actions' environment variable for CI.
+
+### S3
+
+To use S3, you need to provide `S3_ENDPOINT`, `S3_PORT`, `S3_ACCESS_KEY` & `S3_SECRET_KEY` environment variables. Project uses [MinIO](https://min.io/) as a local S3 provider.
 
 ### ERD
 
