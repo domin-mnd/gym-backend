@@ -9,7 +9,7 @@ import { defineExpressRoute } from "storona";
 const clientRepository = new ClientRepository(db);
 const sessionRepository = new SessionRepository(db);
 
-interface Payload
+interface PayloadBody
   extends Omit<
     Insertable<Client>,
     "client_id" | "password_hash" | "created_at"
@@ -80,7 +80,7 @@ interface Payload
  *         $ref: '#/components/responses/BadRequest'
  */
 export default defineExpressRoute<{
-  ReqBody: Payload;
+  ReqBody: PayloadBody;
 }>(async (req, res) => {
   const { success, error } = clientRepository.validate(
     clientRepository.Schema.SignUp,

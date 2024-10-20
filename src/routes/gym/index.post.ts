@@ -5,7 +5,7 @@ import { defineExpressRoute } from "storona";
 
 const gymRepository = new GymRepository(db);
 
-interface Payload {
+interface PayloadBody {
   city: string;
   street: string;
   building: string;
@@ -13,7 +13,7 @@ interface Payload {
 }
 
 export default defineExpressRoute<{
-  ReqBody: Payload;
+  ReqBody: PayloadBody;
 }>(async (req, res) => {
   const { success, error } = gymRepository.validate(
     gymRepository.Schema.Add,

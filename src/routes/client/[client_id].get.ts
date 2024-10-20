@@ -6,7 +6,7 @@ import { defineExpressRoute } from "storona";
 
 const clientRepository = new ClientRepository(db);
 
-type Payload = {
+type PayloadParams = {
   client_id: string;
 };
 
@@ -48,7 +48,7 @@ type Payload = {
  */
 export default defineExpressRoute<{
   Locals: ClientLocals;
-  Params: Payload;
+  Params: PayloadParams;
 }>(async (req, res) => {
   const { success, error } = clientRepository.validate(
     clientRepository.Schema.Get,

@@ -5,12 +5,12 @@ import { defineExpressRoute } from "storona";
 
 const membershipRepository = new MembershipRepository(db);
 
-interface Payload {
+interface PayloadBody {
   membership_id: number;
 }
 
 export default defineExpressRoute<{
-  ReqBody: Payload;
+  ReqBody: PayloadBody;
 }>(async (req, res) => {
   const { success, error } = membershipRepository.validate(
     membershipRepository.Schema.Freeze,

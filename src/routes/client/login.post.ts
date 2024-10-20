@@ -7,7 +7,7 @@ import { defineExpressRoute } from "storona";
 const clientRepository = new ClientRepository(db);
 const sessionRepository = new SessionRepository(db);
 
-interface Payload {
+interface PayloadBody {
   email_address: string;
   password: string;
 }
@@ -59,7 +59,7 @@ interface Payload {
  *         $ref: '#/components/responses/NotFound'
  */
 export default defineExpressRoute<{
-  ReqBody: Payload;
+  ReqBody: PayloadBody;
 }>(async (req, res) => {
   const { success, error } = clientRepository.validate(
     clientRepository.Schema.SignIn,

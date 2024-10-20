@@ -6,7 +6,7 @@ import { defineExpressRoute } from "storona";
 
 const bankCardRepository = new BankCardRepository(db);
 
-interface Payload {
+interface PayloadBody {
   card_number: string;
   cardholder_name: string;
   expires_at: string;
@@ -67,7 +67,7 @@ interface Payload {
  *         $ref: '#/components/responses/Unauthorized'
  */
 export default defineExpressRoute<{
-  ReqBody: Payload;
+  ReqBody: PayloadBody;
   Locals: ClientLocals;
 }>(async (req, res) => {
   const { success, error } = bankCardRepository.validate(

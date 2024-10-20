@@ -8,7 +8,7 @@ const trainerAppointmentRepository = new TrainerAppointmentRepository(
   db,
 );
 
-interface Payload {
+interface PayloadBody {
   client_id?: number;
   as_employee?: boolean;
   // 2 Dates in ISO format
@@ -16,7 +16,7 @@ interface Payload {
 }
 
 export default defineExpressRoute<{
-  ReqBody: Payload;
+  ReqBody: PayloadBody;
   Locals: ClientLocals;
 }>(async (req, res) => {
   const { success, error } = trainerAppointmentRepository.validate(

@@ -9,13 +9,13 @@ import { defineExpressRoute } from "storona";
 const visitHistoryRepository = new VisitHistoryRepository(db);
 const sessionRepository = new SessionRepository(db);
 
-interface Payload {
+interface PayloadBody {
   client_id?: number;
   gym_id: number;
 }
 
 export default defineExpressRoute<{
-  ReqBody: Payload;
+  ReqBody: PayloadBody;
   Locals: ClientLocals;
 }>(async (req, res) => {
   const { success, error } = visitHistoryRepository.validate(

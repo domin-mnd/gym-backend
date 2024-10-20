@@ -11,13 +11,13 @@ const membershipRepository = new MembershipRepository(db);
 const bankCardRepository = new BankCardRepository(db);
 const paymentHistoryRepository = new PaymentHistoryRepository(db);
 
-interface Payload {
+interface PayloadBody {
   bank_card_id: number;
   level_type: LevelType;
 }
 
 export default defineExpressRoute<{
-  ReqBody: Payload;
+  ReqBody: PayloadBody;
   Locals: ClientLocals;
 }>(async (req, res) => {
   const { success, error } = membershipRepository.validate(

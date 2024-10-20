@@ -6,7 +6,7 @@ import { defineExpressRoute } from "storona";
 
 const employeeRepository = new EmployeeRepository(db);
 
-interface Payload {
+interface PayloadBody {
   client_id: number;
   employee_type: EmployeeType;
   left_at?: Date;
@@ -83,7 +83,7 @@ interface Payload {
  *         $ref: '#/components/responses/Unauthorized'
  */
 export default defineExpressRoute<{
-  ReqBody: Payload;
+  ReqBody: PayloadBody;
 }>(async (req, res) => {
   const { success, error } = employeeRepository.validate(
     employeeRepository.Schema.Promote,
