@@ -30,9 +30,11 @@ const bankCardRepository = new BankCardRepository(db);
  *                 bank_card:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/BankCard'
+ *                     $ref: "#/components/schemas/BankCard"
  *       401:
- *         $ref: '#/components/responses/Unauthorized'
+ *         $ref: "#/components/responses/Unauthorized"
+ *       429:
+ *         $ref: "#/components/responses/TooManyRequests"
  */
 export default defineExpressRoute<{
   Locals: ClientLocals;

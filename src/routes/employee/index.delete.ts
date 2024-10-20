@@ -42,9 +42,11 @@ interface PayloadBody {
  *                   description: Whether the an employee is fired
  *                   example: true
  *       400:
- *         $ref: '#/components/responses/BadRequest'
+ *         $ref: "#/components/responses/BadRequest"
  *       401:
- *         $ref: '#/components/responses/Unauthorized'
+ *         $ref: "#/components/responses/Unauthorized"
+ *       429:
+ *         $ref: "#/components/responses/TooManyRequests"
  */
 export default defineExpressRoute<{
   ReqBody: PayloadBody;

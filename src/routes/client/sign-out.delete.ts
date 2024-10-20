@@ -32,6 +32,8 @@ const sessionRepository = new SessionRepository(db);
  *         $ref: "#/components/responses/BadRequest"
  *       401:
  *         $ref: "#/components/responses/Unauthorized"
+ *       429:
+ *         $ref: "#/components/responses/TooManyRequests"
  */
 export default defineExpressRoute(async (req, res) => {
   const session = await sessionRepository.get(getToken(req));

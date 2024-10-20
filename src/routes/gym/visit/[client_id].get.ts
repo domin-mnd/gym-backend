@@ -49,13 +49,15 @@ type PayloadParams = {
  *                 visit_history:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/VisitHistory'
+ *                     $ref: "#/components/schemas/VisitHistory"
  *                 graph:
- *                   $ref: '#/components/schemas/VisitGraph'
+ *                   $ref: "#/components/schemas/VisitGraph"
  *       401:
- *         $ref: '#/components/responses/Unauthorized'
+ *         $ref: "#/components/responses/Unauthorized"
  *       404:
- *         $ref: '#/components/responses/NotFound'
+ *         $ref: "#/components/responses/NotFound"
+ *       429:
+ *         $ref: "#/components/responses/TooManyRequests"
  */
 export default defineExpressRoute<{
   ReqQuery: PayloadQs;

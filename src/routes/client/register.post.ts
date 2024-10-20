@@ -73,11 +73,13 @@ interface PayloadBody
  *                   description: Whether client is registered
  *                   example: true
  *                 session:
- *                   $ref: '#/components/schemas/Session'
+ *                   $ref: "#/components/schemas/Session"
  *                 client:
- *                   $ref: '#/components/schemas/Client'
+ *                   $ref: "#/components/schemas/Client"
  *       400:
- *         $ref: '#/components/responses/BadRequest'
+ *         $ref: "#/components/responses/BadRequest"
+ *       429:
+ *         $ref: "#/components/responses/TooManyRequests"
  */
 export default defineExpressRoute<{
   ReqBody: PayloadBody;

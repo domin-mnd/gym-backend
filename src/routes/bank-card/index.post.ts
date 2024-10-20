@@ -60,11 +60,13 @@ interface PayloadBody {
  *                   description: Whether card was added
  *                   example: true
  *                 bank_card:
- *                   $ref: '#/components/schemas/BankCard'
+ *                   $ref: "#/components/schemas/BankCard"
  *       400:
- *         $ref: '#/components/responses/BadRequest'
+ *         $ref: "#/components/responses/BadRequest"
  *       401:
- *         $ref: '#/components/responses/Unauthorized'
+ *         $ref: "#/components/responses/Unauthorized"
+ *       429:
+ *         $ref: "#/components/responses/TooManyRequests"
  */
 export default defineExpressRoute<{
   ReqBody: PayloadBody;

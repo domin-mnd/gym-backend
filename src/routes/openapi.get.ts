@@ -19,6 +19,8 @@ const spec = getSpec();
  *           application/json:
  *             schema:
  *               type: any
+ *       429:
+ *         $ref: "#/components/responses/TooManyRequests"
  */
 export default defineExpressRoute<{
   Locals: ClientLocals;

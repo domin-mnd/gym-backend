@@ -38,11 +38,13 @@ type PayloadParams = {
  *                   type: boolean
  *                   description: Whether bank card is deleted
  *       400:
- *         $ref: '#/components/responses/BadRequest'
+ *         $ref: "#/components/responses/BadRequest"
  *       401:
- *         $ref: '#/components/responses/Unauthorized'
+ *         $ref: "#/components/responses/Unauthorized"
  *       404:
- *         $ref: '#/components/responses/NotFound'
+ *         $ref: "#/components/responses/NotFound"
+ *       429:
+ *         $ref: "#/components/responses/TooManyRequests"
  */
 export default defineExpressRoute<{
   Params: PayloadParams;

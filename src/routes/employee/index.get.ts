@@ -29,9 +29,11 @@ const employeeRepository = new EmployeeRepository(db);
  *                 employee:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/Employee'
+ *                     $ref: "#/components/schemas/Employee"
  *       401:
- *         $ref: '#/components/responses/Unauthorized'
+ *         $ref: "#/components/responses/Unauthorized"
+ *       429:
+ *         $ref: "#/components/responses/TooManyRequests"
  */
 export default defineExpressRoute(async (_req, res) => {
   const employees = await employeeRepository.getExpanded();

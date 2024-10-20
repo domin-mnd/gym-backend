@@ -40,11 +40,13 @@ type PayloadParams = {
  *                   description: Whether the retrieval is successful
  *                   example: true
  *                 client:
- *                   $ref: '#/components/schemas/Client'
+ *                   $ref: "#/components/schemas/Client"
  *       401:
- *         $ref: '#/components/responses/Unauthorized'
+ *         $ref: "#/components/responses/Unauthorized"
  *       404:
- *         $ref: '#/components/responses/NotFound'
+ *         $ref: "#/components/responses/NotFound"
+ *       429:
+ *         $ref: "#/components/responses/TooManyRequests"
  */
 export default defineExpressRoute<{
   Locals: ClientLocals;

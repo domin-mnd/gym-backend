@@ -78,9 +78,11 @@ interface PayloadBody {
  *                       description: Employee's hiring date
  *                       example: "2024-10-10T18:36:47.668Z"
  *       400:
- *         $ref: '#/components/responses/BadRequest'
+ *         $ref: "#/components/responses/BadRequest"
  *       401:
- *         $ref: '#/components/responses/Unauthorized'
+ *         $ref: "#/components/responses/Unauthorized"
+ *       429:
+ *         $ref: "#/components/responses/TooManyRequests"
  */
 export default defineExpressRoute<{
   ReqBody: PayloadBody;

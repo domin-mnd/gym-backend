@@ -43,3 +43,18 @@ components:
                 type: string
                 description: Error message
                 example: "Not found"
+    TooManyRequests:
+      description: Rate limit exceeded - 100 queries per 15 minutes.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                description: Whether query is successful
+                example: false
+              error:
+                type: string
+                description: Error message
+                example: "Too many requests, please try again later"
