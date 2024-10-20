@@ -2,18 +2,17 @@ import { getAPIVersion } from "@/utils/api";
 import { defineExpressMiddleware } from ".";
 import { SessionRepository } from "@/repositories/session";
 import { db } from "@/database";
-import { EmployeeRepository } from "@/repositories/employee";
 import { getToken } from "@/utils/jwt";
 
 const sessionRepository = new SessionRepository(db);
 
 const prefix = `/v${getAPIVersion()}`;
-export default defineExpressMiddleware(async (req, res, next) => {
-  const matchingUrls: Record<string, string[]> = {
-    [`${prefix}/employee`]: ["POST", "DELETE"],
-    [`${prefix}/gym`]: ["POST", "DELETE"],
-  };
+const matchingUrls: Record<string, string[]> = {
+  [`${prefix}/employee`]: ["POST", "DELETE"],
+  [`${prefix}/gym`]: ["POST", "DELETE"],
+};
 
+export default defineExpressMiddleware(async (req, res, next) => {
   if (
     !matchingUrls[req.path] ||
     !matchingUrls[req.path].includes(req.method)
