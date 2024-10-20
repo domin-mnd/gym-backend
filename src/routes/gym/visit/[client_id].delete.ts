@@ -13,6 +13,41 @@ type PayloadParams = {
   client_id: string;
 };
 
+/**
+ * @openapi
+ * /gym/visit/{client_id}:
+ *   delete:
+ *     summary: Leave Gym
+ *     description: Leave gym for a client. You have to be an admin to leave gym for another client.
+ *     tags:
+ *       - Gym
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: client_id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: Id of the client in database
+ *     responses:
+ *       200:
+ *         description: Successfully left gym.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Whether client left gym
+ *       400:
+ *         $ref: "#/components/responses/BadRequest"
+ *       401:
+ *         $ref: "#/components/responses/Unauthorized"
+ *       429:
+ *         $ref: "#/components/responses/TooManyRequests"
+ */
 export default defineExpressRoute<{
   Params: PayloadParams;
   Locals: ClientLocals;

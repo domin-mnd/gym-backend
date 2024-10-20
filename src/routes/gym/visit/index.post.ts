@@ -14,6 +14,53 @@ interface PayloadBody {
   gym_id: number;
 }
 
+/**
+ * @openapi
+ * /gym/visit:
+ *   post:
+ *     summary: Enter Gym
+ *     description: Enter certain gym by yourself or given client. You have to be an admin to enter gym for another client.
+ *     tags:
+ *       - Gym
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required:
+ *         - gym_id
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               client_id:
+ *                 type: string
+ *                 description: Id of the client in database
+ *               gym_id:
+ *                 type: string
+ *                 description: Id of the gym in database
+ *           example:
+ *             gym_id: 1
+ *     responses:
+ *       200:
+ *         description: Successfully entering gym.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Whether you/client entered gym
+ *                   example: true
+ *                 visit_history:
+ *                   $ref: "#/components/schemas/VisitHistory"
+ *       400:
+ *         $ref: "#/components/responses/BadRequest"
+ *       401:
+ *         $ref: "#/components/responses/Unauthorized"
+ *       429:
+ *         $ref: "#/components/responses/TooManyRequests"
+ */
 export default defineExpressRoute<{
   ReqBody: PayloadBody;
   Locals: ClientLocals;
@@ -42,6 +89,8 @@ export default defineExpressRoute<{
     req.body.client_id ?? res.locals.client.client_id,
   );
   if (assertError(visit, res)) return;
+
+  delete visit.client_id;
 
   res.json({
     success: true,
