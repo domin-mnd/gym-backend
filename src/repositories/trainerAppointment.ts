@@ -7,6 +7,7 @@ enum TrainerAppointmentSchema {
   Add,
   Delete,
   Get,
+  GetByClient,
 }
 
 export class TrainerAppointmentRepository extends Repository<TrainerAppointment> {
@@ -21,8 +22,12 @@ export class TrainerAppointmentRepository extends Repository<TrainerAppointment>
       description: z.string(),
     }),
     [this.Schema.Get]: z.object({
-      client_id: z.number().optional(),
-      as_employee: z.boolean().optional(),
+      as_employee: z.enum(["true", "false"]).optional(),
+      range: z.string().datetime({ offset: true }).array().length(2),
+    }),
+    [this.Schema.GetByClient]: z.object({
+      client_id: z.string().regex(/^\d+$/),
+      as_employee: z.enum(["true", "false"]).optional(),
       range: z.string().datetime({ offset: true }).array().length(2),
     }),
     [this.Schema.Delete]: z.object({
@@ -38,12 +43,16 @@ export class TrainerAppointmentRepository extends Repository<TrainerAppointment>
     await this.db
       .updateTable("trainer_appointment")
       .set({ revoked: true })
+      .where("appointed_at", ">", new Date())
       .where("trainer_appointment_id", "=", trainer_appointment_id)
       .execute();
   }
 
-  public getByClient(client_id: number, range: [string, string]) {
-    return this.db
+  public async getByClient(
+    client_id: number,
+    range: [string, string],
+  ) {
+    const appointments = await this.db
       .selectFrom("trainer_appointment")
       .innerJoin(
         "employee",
@@ -64,10 +73,17 @@ export class TrainerAppointmentRepository extends Repository<TrainerAppointment>
       )
       .selectAll()
       .execute();
+
+    return appointments.map(
+      ({ password_hash, ...appointment }) => appointment,
+    );
   }
 
-  public getByEmployee(employee_id: number, range: [string, string]) {
-    return this.db
+  public async getByEmployee(
+    employee_id: number,
+    range: [string, string],
+  ) {
+    const appointments = await this.db
       .selectFrom("trainer_appointment")
       .innerJoin(
         "client",
@@ -87,5 +103,9 @@ export class TrainerAppointmentRepository extends Repository<TrainerAppointment>
       )
       .selectAll()
       .execute();
+
+    return appointments.map(
+      ({ password_hash, ...appointment }) => appointment,
+    );
   }
 }

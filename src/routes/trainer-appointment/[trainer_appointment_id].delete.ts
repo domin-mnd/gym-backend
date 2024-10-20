@@ -15,6 +15,41 @@ type PayloadParams = {
   trainer_appointment_id: string;
 };
 
+/**
+ * @openapi
+ * /trainer-appointment/{trainer_appointment_id}:
+ *   delete:
+ *     summary: Cancel Appointment
+ *     description: Cancel a trainer appointment that hasn't started or ended yet. You can only cancel your own appointment using JWT.
+ *     tags:
+ *       - TrainerAppointment
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: trainer_appointment_id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: Id of the appointment in database (retrieved using GET /bank-card)
+ *     responses:
+ *       200:
+ *         description: Successful appointment cancellation.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Whether an appointment is cancelled
+ *       400:
+ *         $ref: "#/components/responses/BadRequest"
+ *       401:
+ *         $ref: "#/components/responses/Unauthorized"
+ *       429:
+ *         $ref: "#/components/responses/TooManyRequests"
+ */
 export default defineExpressRoute<{
   Params: PayloadParams;
   Locals: ClientLocals;

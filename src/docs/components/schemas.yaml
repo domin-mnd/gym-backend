@@ -30,13 +30,7 @@ components:
             example: "Required"
     BankCard:
       type: object
-      required:
-        - bank_card_id
-        - card_number
-        - cardholder_name
-        - client_id
-        - cvv
-        - expires_at
+      required: true
       properties:
         bank_card_id:
           type: integer
@@ -66,14 +60,7 @@ components:
         expires_at: "2022-01-01"
     Client:
       type: object
-      required:
-        - client_id
-        - created_at
-        - email_address
-        - first_name
-        - last_name
-        - phone_number
-        - profile_picture_url
+      required: true
       properties:
         client_id:
           type: integer
@@ -111,12 +98,7 @@ components:
         profile_picture_url: "https://example.com/profile_picture.jpg"
     Session:
       type: object
-      required:
-        - created_at
-        - expires_at
-        - jwt
-        - revoked
-        - session_id
+      required: true
       properties:
         created_at:
           type: string
@@ -142,68 +124,30 @@ components:
         jwt: "jE92mGiq2S.e2s1.da239-Z983ns"
         revoked: false
     Employee:
-      type: object
-      required:
-        - employee_id
-        - client_id
-        - employee_type
-        - left_at
-        - created_at
-        - email_address
-        - first_name
-        - last_name
-        - patronymic
-        - phone_number
-        - profile_picture_url
-      properties:
-        employee_id:
-          type: integer
-          description: Id of the employee in database
-        client_id:
-          type: integer
-          description: Id of the client in database
-        employee_type:
-          type: string
-          enum: [ADMIN, INSTRUCTOR, TRAINER]
-          description: Employee's current job posting
-        left_at:
-          type: string
-          format: date
-          description: Employee's firing date (null if employee wasn't fired yet)
-        created_at:
-          type: string
-          format: date
-          description: Employee's hiring date
-        email_address:
-          type: string
-          description: Employee's email
-        first_name:
-          type: string
-          description: Employee's first name
-        last_name:
-          type: string
-          description: Employee's last name
-        patronymic:
-          type: string
-          description: Employee's patronymic/middle name
-        phone_number:
-          type: string
-          description: Employee's phone number
-        profile_picture_url:
-          type: string
-          description: Link to client's profile picture, typically uploaded using POST /profile-picture
-      example:
-        employee_id: 1
-        client_id: 1
-        employee_type: "ADMIN"
-        left_at: null
-        created_at: "2024-10-10T18:36:47.668Z"
-        email_address: "Og0rB@example.com"
-        first_name: "Иван"
-        last_name: "Иванов"
-        patronymic: "Иванович"
-        phone_number: "79174236278"
-        profile_picture_url: "https://example.com/profile_picture.jpg"
+      allOf:
+        - $ref: "#/components/schemas/Client"
+        - type: object
+          required: true
+          properties:
+            employee_id:
+              type: integer
+              description: Id of the employee in database
+            client_id:
+              type: integer
+              description: Id of the client in database
+            employee_type:
+              type: string
+              enum: [ADMIN, INSTRUCTOR, TRAINER]
+              description: Employee's current job posting
+            left_at:
+              type: string
+              format: date
+              description: Employee's firing date (null if employee wasn't fired yet)
+          example:
+            employee_id: 1
+            client_id: 1
+            employee_type: "ADMIN"
+            left_at: null
     VisitHistory:
       properties:
         visit_history_id:
@@ -235,12 +179,7 @@ components:
         "2024-10-03": 3600000
     Gym:
       type: object
-      required:
-        - gym_id
-        - building
-        - city
-        - description
-        - street
+      required: true
       properties:
         gym_id:
           type: integer
@@ -264,47 +203,100 @@ components:
         building: "24"
         description: "Фитнес-клуб премиум-класса, расположенный в самом сердце Казани."
     PaymentHistory:
-      type: object
-      required:
-        - payment_history_id
-        - type
-        - client_id
-      properties:
-        payment_history_id:
-          type: integer
-          description: Id of the payment in database
-        type:
-          type: string
-          enum: [membership, trainer_appointment]
-          description: Type of the payment
-        client_id:
-          type: integer
-          description: Id of the client in database
-        level_type:
-          type: string
-          enum: [SIMPLE, INFINITY, PREMIUM]
-          description: Membership level
-        created_at:
-          type: string
-          format: date
-          description: Payment creation date
-        employee_id:
-          type: integer
-          description: Id of the employee in database
-        gym_id:
-          type: integer
-          description: Id of the gym in database
-        appointed_at:
-          type: string
-          format: date
-          description: Appointment start date
-        ends_at:
-          type: string
-          format: date
-          description: Appointment end date
-      example:
-        payment_history_id: 1
-        type: "membership"
-        client_id: 1
-        level_type: "SIMPLE"
-        created_at: "2024-10-10T18:36:47.668Z"
+      anyOf:
+        - type: object
+          required: true
+          properties:
+            payment_history_id:
+              type: integer
+              description: Id of the payment in database
+            type:
+              type: string
+              enum: [membership, trainer_appointment]
+              description: Type of the payment
+            client_id:
+              type: integer
+              description: Id of the client in database
+            level_type:
+              type: string
+              enum: [SIMPLE, INFINITY, PREMIUM]
+              description: Membership level
+            created_at:
+              type: string
+              format: date
+              description: Payment creation date
+          example:
+            payment_history_id: 1
+            type: "membership"
+            client_id: 1
+            level_type: "SIMPLE"
+            created_at: "2024-10-10T18:36:47.668Z"
+        - type: object
+          required: true
+          properties:
+            payment_history_id:
+              type: integer
+              description: Id of the payment in database
+            type:
+              type: string
+              enum: [membership, trainer_appointment]
+              description: Type of the payment
+            client_id:
+              type: integer
+              description: Id of the client in database
+            employee_id:
+              type: integer
+              description: Id of the employee in database
+            gym_id:
+              type: integer
+              description: Id of the gym in database
+            appointed_at:
+              type: string
+              format: date
+              description: Appointment start date
+            ends_at:
+              type: string
+              format: date
+              description: Appointment end date
+          example:
+            payment_history_id: 1
+            type: "trainer_appointment"
+            client_id: 1
+            employee_id: 2
+            gym_id: 1
+            appointed_at: "2024-10-10T18:36:47.668Z"
+            ends_at: "2024-10-10T20:36:47.668Z"
+    TrainerAppointment:
+      allOf:
+        - $ref: "#/components/schemas/Client"
+        - $ref: "#/components/schemas/Employee"
+        - type: object
+          required: true
+          properties:
+            trainer_appointment_id:
+              type: integer
+              description: Id of the appointment in database
+            client_id:
+              type: integer
+              description: Id of the client in database
+            employee_id:
+              type: integer
+              description: Id of the employee in database
+            gym_id:
+              type: integer
+              description: Id of the gym in database
+            appointed_at:
+              type: string
+              format: date
+              description: Appointment start date
+            ends_at:
+              type: string
+              format: date
+              description: Appointment end date
+          example:
+            trainer_appointment_id: 1
+            client_id: 1
+            employee_id: 2
+            gym_id: 1
+            appointed_at: "2024-10-10T18:36:47.668Z"
+            ends_at: "2024-10-10T20:36:47.668Z"

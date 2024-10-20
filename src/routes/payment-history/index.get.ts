@@ -30,19 +30,6 @@ const paymentHistoryRepository = new PaymentHistoryRepository(db);
  *                   type: array
  *                   items:
  *                     $ref: "#/components/schemas/PaymentHistory"
- *                   example:
- *                     - payment_history_id: 1
- *                       type: "membership"
- *                       client_id: 1
- *                       level_type: "SIMPLE"
- *                       created_at: "2024-10-10T18:36:47.668Z"
- *                     - payment_history_id: 1
- *                       type: "trainer_appointment"
- *                       client_id: 1
- *                       employee_id: 1
- *                       gym_id: 1
- *                       appointed_at: "2024-10-10T18:36:47.668Z"
- *                       ends_at: "2024-10-10T20:36:47.668Z"
  *       401:
  *         $ref: "#/components/responses/Unauthorized"
  *       429:

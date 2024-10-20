@@ -7,6 +7,8 @@ tags:
     description: Employee management
   - name: Gym
     description: Gym-related operations
+  - name: TrainerAppointment
+    description: Trainer appointment management
   - name: PaymentHistory
     description: Payment history lookup
   - name: Documentation

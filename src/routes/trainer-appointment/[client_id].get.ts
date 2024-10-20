@@ -9,6 +9,7 @@ const trainerAppointmentRepository = new TrainerAppointmentRepository(
 );
 
 type PayloadQs = {
+  client_id: string;
   as_employee?: "true" | "false";
   // 2 Dates in ISO format
   range: [string, string];
@@ -16,10 +17,10 @@ type PayloadQs = {
 
 /**
  * @openapi
- * /trainer-appointment:
+ * /trainer-appointment/{client_id}:
  *   get:
  *     summary: Get Appointments
- *     description: Get client's trainer appointments using their client_id.
+ *     description: Get own trainer appointments using JWT.
  *     tags:
  *       - TrainerAppointment
  *     security:
@@ -50,7 +51,7 @@ export default defineExpressRoute<{
   Locals: ClientLocals;
 }>(async (req, res) => {
   const { success, error } = trainerAppointmentRepository.validate(
-    trainerAppointmentRepository.Schema.Get,
+    trainerAppointmentRepository.Schema.GetByClient,
     req.query,
   );
   if (!success) return throwError(res, error);
@@ -62,7 +63,7 @@ export default defineExpressRoute<{
 
   const trainerAppointments = await trainerAppointmentRepository[
     usedMethod
-  ](res.locals.client.client_id, req.query.range);
+  ](+req.query.client_id, req.query.range);
 
   res.json({
     success: true,
