@@ -26,6 +26,7 @@ This API was designed as a smaller but full-fledged barebones express project wi
 - [x] 🗂️ Database Repositories
 - [x] 📖 ER Diagram
 - [ ] 🖼️ AWS S3 Support
+- [x] 📜 RFC 9110 Compliance
 - [x] 🪖 Bulletproof
 - [x] 🔍 Linting
 - [x] ⚡ Bun Integration

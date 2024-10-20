@@ -9,18 +9,17 @@ import { defineExpressRoute } from "storona";
 const visitHistoryRepository = new VisitHistoryRepository(db);
 const sessionRepository = new SessionRepository(db);
 
-interface Payload {
-  client_id?: number;
-  gym_id: number;
-}
+type PayloadParams = {
+  client_id: string;
+};
 
 export default defineExpressRoute<{
-  ReqBody: Payload;
+  Params: PayloadParams;
   Locals: ClientLocals;
 }>(async (req, res) => {
   const { success, error } = visitHistoryRepository.validate(
     visitHistoryRepository.Schema.Leave,
-    req.body,
+    req.params,
   );
   if (!success) return throwError(res, error);
 
@@ -28,7 +27,7 @@ export default defineExpressRoute<{
   const employee = await sessionRepository.getEmployee(jwt);
 
   if (
-    req.body.client_id &&
+    req.params.client_id &&
     (!employee || employee.employee_type !== "ADMIN")
   ) {
     return res.status(401).json({
@@ -38,8 +37,7 @@ export default defineExpressRoute<{
   }
 
   const visit = await visitHistoryRepository.leave(
-    req.body.gym_id,
-    req.body.client_id ?? res.locals.client.client_id,
+    +req.params.client_id ?? res.locals.client.client_id,
   );
 
   res.json({

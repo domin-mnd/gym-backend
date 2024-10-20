@@ -31,7 +31,7 @@ interface Payload {
  *             properties:
  *               client_id:
  *                 type: number
- *                 description: Id of the client in database (you can get it via GET /v0/client)
+ *                 description: Id of the client in database (you can get it via GET /client)
  *               employee_type:
  *                 type: string
  *                 description: Employee's job posting

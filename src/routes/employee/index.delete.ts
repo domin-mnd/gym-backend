@@ -28,7 +28,7 @@ interface Payload {
  *             properties:
  *               employee_id:
  *                 type: number
- *                 description: Id of the employee in database (you can get it via GET /v0/employee)
+ *                 description: Id of the employee in database (you can get it via GET /employee)
  *     responses:
  *       200:
  *         description: Successfully fired an employee.

@@ -58,7 +58,7 @@ interface Payload
  *                 example: "79174236278"
  *               profile_picture_url:
  *                 type: string
- *                 description: Link to client's profile picture, typically uploaded using POST /v0/profile-picture
+ *                 description: Link to client's profile picture, typically uploaded using POST /profile-picture
  *                 example: "https://example.com/profile_picture.jpg"
  *     responses:
  *       200:

@@ -5,21 +5,21 @@ import { defineExpressRoute } from "storona";
 
 const membershipRepository = new MembershipRepository(db);
 
-interface Payload {
-  membership_id: number;
-}
+type PayloadParams = {
+  membership_id: string;
+};
 
 export default defineExpressRoute<{
-  ReqBody: Payload;
+  Params: PayloadParams;
 }>(async (req, res) => {
   const { success, error } = membershipRepository.validate(
     membershipRepository.Schema.Cancel,
-    req.body,
+    req.params,
   );
   if (!success) return throwError(res, error);
 
   const membership = await membershipRepository.get(
-    req.body.membership_id,
+    req.params.membership_id,
   );
   if (!membership) return throwError(res, "Not found");
 
@@ -29,7 +29,7 @@ export default defineExpressRoute<{
   if (membership.expires_at.getTime() <= new Date().getTime())
     return throwError(res, "Membership expired");
 
-  await membershipRepository.revoke(req.body.membership_id);
+  await membershipRepository.revoke(+req.params.membership_id);
   res.json({
     success: true,
   });

@@ -5,21 +5,21 @@ import { defineExpressRoute } from "storona";
 
 const membershipRepository = new MembershipRepository(db);
 
-interface Payload {
-  membership_id: number;
-}
+type PayloadParams = {
+  membership_id: string;
+};
 
 export default defineExpressRoute<{
-  ReqBody: Payload;
+  Params: PayloadParams;
 }>(async (req, res) => {
   const { success, error } = membershipRepository.validate(
     membershipRepository.Schema.Freeze,
-    req.body,
+    req.params,
   );
   if (!success) return throwError(res, error);
 
   const membership = await membershipRepository.get(
-    req.body.membership_id,
+    req.params.membership_id,
   );
   if (!membership) return throwError(res, "Not found");
 

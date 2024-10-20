@@ -12,6 +12,39 @@ type PayloadQs = {
   range: [string, string];
 };
 
+/**
+ * @openapi
+ * /gym/visit:
+ *   get:
+ *     summary: Get History
+ *     description: Get own gym visit history using JWT.
+ *     tags:
+ *       - Gym
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Successful retrieval of own gym visit history.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Whether the retrieval is successful
+ *                   example: true
+ *                 visit_history:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/VisitHistory'
+ *                 graph:
+ *                   $ref: '#/components/schemas/VisitGraph'
+ *       401:
+ *         $ref: '#/components/responses/Unauthorized'
+ *       404:
+ *         $ref: '#/components/responses/NotFound'
+ */
 export default defineExpressRoute<{
   ReqQuery: PayloadQs;
   Locals: ClientLocals;

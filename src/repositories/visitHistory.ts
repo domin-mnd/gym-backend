@@ -19,14 +19,13 @@ export class VisitHistoryRepository extends Repository<VisitHistory> {
       gym_id: z.number(),
     }),
     [this.Schema.Leave]: z.object({
-      client_id: z.number().optional(),
-      gym_id: z.number(),
+      client_id: z.string().regex(/^\d+$/),
     }),
     [this.Schema.HistoryQuery]: z.object({
       range: z.string().datetime({ offset: true }).array().length(2),
     }),
     [this.Schema.HistoryParams]: z.object({
-      client_id: z.string().regex(/^\d+$/).transform(Number),
+      client_id: z.string().regex(/^\d+$/),
     }),
   };
 
@@ -48,36 +47,34 @@ export class VisitHistoryRepository extends Repository<VisitHistory> {
     const lastVisit = await this.db
       .selectFrom("visit_history")
       .select(["visit_history_id", "left_at"])
-      .where("gym_id", "=", gym_id)
       .where("client_id", "=", client_id)
       .orderBy("visit_history_id", "desc")
       .executeTakeFirst();
 
-    if (!lastVisit || lastVisit?.left_at) {
-      try {
-        return this.add({
-          gym_id,
-          client_id,
-          entered_at: new Date(),
-        });
-      } catch (error) {
-        return error as Error;
-      }
+    if (lastVisit && !lastVisit.left_at) {
+      return new Error("Already in the gym");
     }
 
-    return new Error("Already in the gym");
+    try {
+      return this.add({
+        gym_id,
+        client_id,
+        entered_at: new Date(),
+      });
+    } catch (error) {
+      return error as Error;
+    }
   }
 
-  public async leave(gym_id: number, client_id: number) {
+  public async leave(client_id: number) {
     return this.db
       .updateTable("visit_history")
-      .where("gym_id", "=", gym_id)
       .where("client_id", "=", client_id)
       .where("left_at", "is", null)
       .set({
         left_at: new Date(),
       })
       .returningAll()
-      .execute();
+      .executeTakeFirst();
   }
 }

@@ -26,8 +26,7 @@ export class TrainerAppointmentRepository extends Repository<TrainerAppointment>
       range: z.string().datetime({ offset: true }).array().length(2),
     }),
     [this.Schema.Delete]: z.object({
-      trainer_appointment_id: z.number(),
-      client_id: z.number().optional(),
+      trainer_appointment_id: z.string().regex(/^\d+$/),
     }),
   };
 

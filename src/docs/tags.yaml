@@ -5,5 +5,7 @@ tags:
     description: Client's profile management
   - name: Employee
     description: Employee management
+  - name: Gym
+    description: Gym-related operations
   - name: Documentation
     description: Related to API Documentation

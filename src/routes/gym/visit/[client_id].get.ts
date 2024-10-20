@@ -19,12 +19,12 @@ type PayloadParams = {
 
 /**
  * @openapi
- * /gym/history/{client_id}:
+ * /gym/visit/{client_id}:
  *   get:
  *     summary: Get History
  *     description: Get any client's gym visit history using their client_id.
  *     tags:
- *       - Client
+ *       - Gym
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -34,6 +34,28 @@ type PayloadParams = {
  *         schema:
  *           type: integer
  *         description: Id of the client in database
+ *     responses:
+ *       200:
+ *         description: Successful retrieval of client's gym visit history.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Whether the retrieval is successful
+ *                   example: true
+ *                 visit_history:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/VisitHistory'
+ *                 graph:
+ *                   $ref: '#/components/schemas/VisitGraph'
+ *       401:
+ *         $ref: '#/components/responses/Unauthorized'
+ *       404:
+ *         $ref: '#/components/responses/NotFound'
  */
 export default defineExpressRoute<{
   ReqQuery: PayloadQs;

@@ -20,10 +20,10 @@ export class MembershipRepository extends Repository<Membership> {
       level_type: z.enum(["SIMPLE", "INFINITY", "PREMIUM"]),
     }),
     [this.Schema.Cancel]: z.object({
-      membership_id: z.number(),
+      membership_id: z.string().regex(/^\d+$/),
     }),
     [this.Schema.Freeze]: z.object({
-      membership_id: z.number(),
+      membership_id: z.string().regex(/^\d+$/),
     }),
   };
 

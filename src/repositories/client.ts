@@ -28,7 +28,7 @@ export class ClientRepository extends Repository<Client> {
       password: z.string().min(8),
     }),
     [this.Schema.Get]: z.object({
-      client_id: z.string().regex(/^\d+$/).transform(Number),
+      client_id: z.string().regex(/^\d+$/),
     }),
   };
 

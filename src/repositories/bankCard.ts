@@ -22,7 +22,7 @@ export class BankCardRepository extends Repository<BankCard> {
       cvv: z.string().min(1).max(4),
     }),
     [this.Schema.Delete]: z.object({
-      bank_card_id: z.number(),
+      bank_card_id: z.string().regex(/^\d+$/),
     }),
     [this.Schema.Get]: z.object({
       client_id: z.number().optional(),

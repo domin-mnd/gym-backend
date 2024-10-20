@@ -6,7 +6,7 @@ import { type ISODate, createDaysArray } from "./date";
  * Parse visit history table array into a date graph.
  * @param visitHistory - Array of visit_history objects.
  * @param range - ISO date range to parse days array into.
- * @returns Parsed record of iso dates with its values as visit length.
+ * @returns Parsed record of iso dates with its values as visit length in milliseconds.
  */
 export function getGraph(
   visitHistory: Selectable<Omit<VisitHistory, "client_id">>[],

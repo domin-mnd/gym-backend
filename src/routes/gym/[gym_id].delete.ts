@@ -5,20 +5,20 @@ import { defineExpressRoute } from "storona";
 
 const gymRepository = new GymRepository(db);
 
-interface Payload {
-  gym_id: number;
-}
+type PayloadParams = {
+  gym_id: string;
+};
 
 export default defineExpressRoute<{
-  ReqBody: Payload;
+  Params: PayloadParams;
 }>(async (req, res) => {
   const { success, error } = gymRepository.validate(
     gymRepository.Schema.Delete,
-    req.body,
+    req.params,
   );
   if (!success) return throwError(res, error);
 
-  await gymRepository.delete(req.body.gym_id);
+  await gymRepository.delete(req.params.gym_id);
   res.json({
     success: true,
   });

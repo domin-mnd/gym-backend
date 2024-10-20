@@ -10,6 +10,8 @@
     "start:node": "korob start",
     "dev:bun": "bun --watch run .",
     "dev:node": "korob dev",
+    "build:docs:bun": "bun src/scripts/buildDocs.ts",
+    "build:docs:node": "korob start src/scripts/buildDocs.ts",
     "compile": "bun build . --compile --outfile api",
     "sql:types": "kysely-codegen",
     "sql:up": "bun run ./src/database/migrate.ts",

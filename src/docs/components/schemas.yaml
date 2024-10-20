@@ -99,7 +99,7 @@ components:
           description: Client's phone number
         profile_picture_url:
           type: string
-          description: Link to client's profile picture, typically uploaded using POST /v0/profile-picture
+          description: Link to client's profile picture, typically uploaded using POST /profile-picture
       example:
         client_id: 1
         created_at: "2024-10-10T18:36:47.668Z"
@@ -191,7 +191,7 @@ components:
           description: Employee's phone number
         profile_picture_url:
           type: string
-          description: Link to client's profile picture, typically uploaded using POST /v0/profile-picture
+          description: Link to client's profile picture, typically uploaded using POST /profile-picture
       example:
         employee_id: 1
         client_id: 1
@@ -204,3 +204,32 @@ components:
         patronymic: "Иванович"
         phone_number: "79174236278"
         profile_picture_url: "https://example.com/profile_picture.jpg"
+    VisitHistory:
+      properties:
+        visit_history_id:
+          type: integer
+          description: Id of the visit in database
+        gym_id:
+          type: integer
+          description: Id of the gym in database
+        entered_at:
+          type: string
+          format: date
+          description: Timestamp of entering the gym
+        left_at:
+          type: string
+          format: date
+          description: Timestamp of leaving the gym (null if still inside)
+      example:
+        visit_history_id: 1
+        gym_id: 1
+        entered_at: "2024-10-10T18:36:47.668Z"
+        left_at: "2024-10-10T20:36:47.668Z"
+    VisitGraph:
+      type: object
+      additionalProperties:
+        type: number
+      example:
+        "2024-10-01": 8280000
+        "2024-10-02": 0
+        "2024-10-03": 3600000

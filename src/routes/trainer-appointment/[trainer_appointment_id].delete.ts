@@ -11,18 +11,17 @@ const trainerAppointmentRepository = new TrainerAppointmentRepository(
   db,
 );
 
-interface Payload {
-  client_id?: number;
-  trainer_appointment_id: number;
-}
+type PayloadParams = {
+  trainer_appointment_id: string;
+};
 
 export default defineExpressRoute<{
-  ReqBody: Payload;
+  Params: PayloadParams;
   Locals: ClientLocals;
 }>(async (req, res) => {
   const { success, error } = trainerAppointmentRepository.validate(
     trainerAppointmentRepository.Schema.Delete,
-    req.body,
+    req.params,
   );
   if (!success) return throwError(res, error);
 
@@ -30,7 +29,7 @@ export default defineExpressRoute<{
   const employee = await sessionRepository.getEmployee(jwt);
 
   const trainerAppointment = await trainerAppointmentRepository.get(
-    req.body.trainer_appointment_id,
+    req.params.trainer_appointment_id,
   );
 
   if (
@@ -40,7 +39,7 @@ export default defineExpressRoute<{
     return throwError(res, "Unauthorized");
 
   await trainerAppointmentRepository.delete(
-    req.body.trainer_appointment_id,
+    +req.params.trainer_appointment_id,
   );
 
   res.json({

@@ -5,13 +5,13 @@ import { defineExpressRoute } from "storona";
 
 const bankCardRepository = new BankCardRepository(db);
 
-interface Payload {
-  bank_card_id: number;
-}
+type PayloadParams = {
+  bank_card_id: string;
+};
 
 /**
  * @openapi
- * /bank-card:
+ * /bank-card/{bank_card_id}:
  *   delete:
  *     summary: Delete Card
  *     description: Bank card deletion using an already known id. You can only delete your card using JWT.
@@ -19,16 +19,13 @@ interface Payload {
  *       - BankCard
  *     security:
  *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               bank_card_id:
- *                 type: number
- *                 description: Bank card ID (retrieved using GET /v0/bank-card)
+ *     parameters:
+ *       - name: bank_card_id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: Id of the bank card in database (retrieved using GET /bank-card)
  *     responses:
  *       200:
  *         description: Successful bank card deletion.
@@ -48,23 +45,23 @@ interface Payload {
  *         $ref: '#/components/responses/NotFound'
  */
 export default defineExpressRoute<{
-  ReqBody: Payload;
+  Params: PayloadParams;
 }>(async (req, res) => {
   const { success, error } = bankCardRepository.validate(
     bankCardRepository.Schema.Delete,
-    req.body,
+    req.params,
   );
   if (!success) return throwError(res, error);
 
   const bankCard = await bankCardRepository.get(
-    req.body.bank_card_id,
+    req.params.bank_card_id,
   );
   if (!bankCard) return throwError(res, "Not found");
 
   if (bankCard.client_id !== res.locals.client.client_id)
     return throwError(res, "Unauthorized");
 
-  await bankCardRepository.delete(req.body.bank_card_id);
+  await bankCardRepository.delete(req.params.bank_card_id);
   res.json({
     success: true,
   });

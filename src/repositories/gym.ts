@@ -20,7 +20,7 @@ export class GymRepository extends Repository<Gym> {
       description: z.string(),
     }),
     [this.Schema.Delete]: z.object({
-      gym_id: z.number(),
+      gym_id: z.string().regex(/^\d+$/),
     }),
   };
 
