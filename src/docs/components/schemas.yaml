@@ -233,3 +233,33 @@ components:
         "2024-10-01": 8280000
         "2024-10-02": 0
         "2024-10-03": 3600000
+    Gym:
+      type: object
+      required:
+        - gym_id
+        - building
+        - city
+        - description
+        - street
+      properties:
+        gym_id:
+          type: integer
+          description: Id of the gym in database
+        city:
+          type: string
+          description: City where gym is located
+        street:
+          type: string
+          description: Street where gym is located
+        building:
+          type: string
+          description: Building number
+        description:
+          type: string
+          description: Gym's description
+      example:
+        gym_id: 1
+        city: "Казань"
+        street: "Хади Такташа"
+        building: "24"
+        description: "Фитнес-клуб премиум-класса, расположенный в самом сердце Казани."
