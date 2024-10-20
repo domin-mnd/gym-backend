@@ -1,4 +1,4 @@
-import type { Gym, VisitHistory } from "kysely-codegen";
+import type { VisitHistory } from "kysely-codegen";
 import { Repository } from ".";
 import type { Database } from "@/database";
 import { z } from "zod";

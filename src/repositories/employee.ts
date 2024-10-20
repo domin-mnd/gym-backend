@@ -2,7 +2,7 @@ import type { Client, Employee, EmployeeType } from "kysely-codegen";
 import { Repository } from ".";
 import type { Database } from "@/database";
 import { z } from "zod";
-import type { Insertable, Selectable } from "kysely";
+import type { Selectable } from "kysely";
 
 enum EmployeeSchema {
   Promote,

@@ -28,7 +28,7 @@ runs:
 
     - name: Build Documentation
       shell: bash
-      run: bun src/scripts/buildDocs.ts
+      run: bun build:docs:bun
       env:
         OPENAPI_BASE_PATH: ${{ inputs.base-path }}
         OPENAPI_HOST: ${{ inputs.host }}

@@ -8,4 +8,5 @@ export function defineExpressMiddleware(
   return cb;
 }
 
+// Sort of like a "middleware pipeline"
 export const middleware = [authenticate, admin];

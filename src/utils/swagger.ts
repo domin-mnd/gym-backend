@@ -9,6 +9,11 @@ import { writeFile } from "fs/promises";
 import { readFile } from "fs/promises";
 import { mkdir } from "fs/promises";
 
+/**
+ * Parses yaml files into a single json object.
+ * @param components - Glob pattern to match yaml files.
+ * @returns A single json object.
+ */
 export function defineYaml(components: string): JsonObject {
   // Using sync to match definer pattern
   const yamlFiles = globSync(components);
@@ -20,6 +25,11 @@ export function defineYaml(components: string): JsonObject {
   return defu.apply(null, swaggerDocs);
 }
 
+/**
+ * Parses jsdocs/tsdocs files into a single json object.
+ * @param routes - Glob pattern to match js/ts files.
+ * @returns A single json object.
+ */
 export function defineJsdoc(routes: string): JsonObject {
   return swaggerJsdoc({
     definition: {
@@ -36,6 +46,10 @@ export function defineJsdoc(routes: string): JsonObject {
   });
 }
 
+/**
+ * Defines default values for the OpenAPI spec.
+ * @returns A single json object.
+ */
 export function defineDefaults(): JsonObject {
   return {
     servers: [
@@ -50,6 +64,13 @@ const SPEC_DIR = "dist";
 const SPEC_PATH_JSON = "dist/openapi.json";
 const SPEC_PATH_YAML = "dist/openapi.yml";
 
+/**
+ * Combines the provided specs into a single object.
+ * If no specs are provided, it reads the exported spec from the dist folder.
+ * @param specs - The specs to combine.
+ * @returns A single json object.
+ * @throws If the spec is not exported yet and no argument was provided.
+ */
 export async function getSpec(
   ...specs: JsonObject[]
 ): Promise<JsonObject> {
@@ -60,6 +81,10 @@ export async function getSpec(
   return JSON.parse(await readFile(SPEC_PATH_JSON, "utf-8"));
 }
 
+/**
+ * Exports the provided spec to the dist folder as json and yaml.
+ * @param spec - The spec to export.
+ */
 export async function exportSpec(spec: JsonObject): Promise<void> {
   await mkdir(SPEC_DIR, { recursive: true });
   await Promise.all([
@@ -68,6 +93,11 @@ export async function exportSpec(spec: JsonObject): Promise<void> {
   ]);
 }
 
+/**
+ * Serves the OpenAPI spec using Swagger UI.
+ * @param spec - The OpenAPI spec to serve.
+ * @returns An array of middleware arguments.
+ */
 export function defineSwagger(spec: JsonObject) {
   return [serve, setup(spec)];
 }

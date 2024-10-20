@@ -6,7 +6,8 @@ import { getToken } from "@/utils/jwt";
 
 const sessionRepository = new SessionRepository(db);
 
-const swaggerEndpoints = [
+// No need for glob usage
+const SWAGGER_ENDPOINTS = [
   "/docs",
   "/docs/",
   "/docs/swagger-ui.css",
@@ -22,10 +23,13 @@ const allowedUrls: Record<string, string[]> = {
   [`${prefix}/client/login`]: ["POST"],
   [`${prefix}/gym`]: ["GET"],
   [`${prefix}/openapi`]: ["GET"],
-  ...swaggerEndpoints.reduce<Record<string, string[]>>((acc, url) => {
-    acc[url] = ["GET"];
-    return acc;
-  }, {}),
+  ...SWAGGER_ENDPOINTS.reduce<Record<string, string[]>>(
+    (acc, url) => {
+      acc[url] = ["GET"];
+      return acc;
+    },
+    {},
+  ),
 };
 
 export default defineExpressMiddleware(async (req, res, next) => {
