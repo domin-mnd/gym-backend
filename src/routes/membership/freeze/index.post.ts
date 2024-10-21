@@ -9,6 +9,50 @@ interface PayloadBody {
   membership_id: number;
 }
 
+/**
+ * @openapi
+ * /membership/freeze:
+ *   post:
+ *     summary: Freeze Membership
+ *     description: Freeze membership by given id. You can only freeze/unfreeze your own memberships.
+ *     tags:
+ *       - Membership
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               membership_id:
+ *                 type: number
+ *                 description: Id of the appointment in database (retrieved using GET /membership/active)
+ *                 example: 1
+ *     responses:
+ *       200:
+ *         description: Successful freezing of a membership.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Whether membership was freezed
+ *                   example: true
+ *                 freeze:
+ *                   $ref: "#/components/schemas/Membership"
+ *       400:
+ *         $ref: "#/components/responses/BadRequest"
+ *       401:
+ *         $ref: "#/components/responses/Unauthorized"
+ *       404:
+ *         $ref: "#/components/responses/NotFound"
+ *       429:
+ *         $ref: "#/components/responses/TooManyRequests"
+ */
 export default defineExpressRoute<{
   ReqBody: PayloadBody;
 }>(async (req, res) => {

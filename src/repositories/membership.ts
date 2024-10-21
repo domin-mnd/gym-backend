@@ -52,7 +52,7 @@ export class MembershipRepository extends Repository<Membership> {
       .set({ freezed_at: new Date() })
       .where("membership_id", "=", membership.membership_id)
       .returningAll()
-      .execute();
+      .executeTakeFirst();
   }
 
   public async unfreeze(membership: Selectable<Membership>) {
@@ -68,7 +68,8 @@ export class MembershipRepository extends Repository<Membership> {
       .updateTable("membership")
       .set({ freezed_at: null, expires_at: newExpiresAt })
       .where("membership_id", "=", membership.membership_id)
-      .execute();
+      .returningAll()
+      .executeTakeFirst();
   }
 
   public async revoke(membership_id: number) {
