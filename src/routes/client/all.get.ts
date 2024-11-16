@@ -10,7 +10,7 @@ const clientRepository = new ClientRepository(db);
  * /client/all:
  *   get:
  *     summary: Get Clients
- *     description: Get information about all clients.
+ *     description: Get information about all clients (pagination to be added).
  *     tags:
  *       - Client
  *     security:
