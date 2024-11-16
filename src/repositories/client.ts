@@ -45,4 +45,22 @@ export class ClientRepository extends Repository<Client> {
       .where("email_address", "=", email)
       .executeTakeFirst();
   }
+
+  public async getAll(): Promise<Selectable<Client>[]> {
+    const clients = await this.db
+      .selectFrom("client")
+      .select([
+        "client_id",
+        "created_at",
+        "email_address",
+        "first_name",
+        "last_name",
+        "patronymic",
+        "phone_number",
+        "profile_picture_url",
+      ])
+      .execute();
+
+    return clients as Selectable<Client>[];
+  }
 }
