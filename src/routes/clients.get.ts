@@ -1,13 +1,12 @@
 import { db } from "@/database";
 import { ClientRepository } from "@/repositories/client";
-import type { ClientLocals } from "@/utils/types";
 import { defineExpressRoute } from "storona";
 
 const clientRepository = new ClientRepository(db);
 
 /**
  * @openapi
- * /client/all:
+ * /clients:
  *   get:
  *     summary: Get Clients
  *     description: Get information about all clients (pagination to be added).
@@ -36,9 +35,7 @@ const clientRepository = new ClientRepository(db);
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute<{
-  Locals: ClientLocals;
-}>(async (_req, res) => {
+export default defineExpressRoute(async (_req, res) => {
   const clients = await clientRepository.getAll();
 
   res.json({
