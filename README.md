@@ -1,5 +1,5 @@
 > [!CAUTION]
-> This API is not intended for public use. It can serve as an example usage of [storona](https://storona.domin.pro) in production.
+> This API is not intended for public use. It can serve as an example usage of [storona](https://storona.domin.lol) in production.
 
 # Contents
 
