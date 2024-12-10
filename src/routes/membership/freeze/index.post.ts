@@ -1,7 +1,7 @@
 import { db } from "@/database";
 import { MembershipRepository } from "@/repositories/membership";
 import { throwError } from "@/utils/api";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const membershipRepository = new MembershipRepository(db);
 
@@ -53,7 +53,7 @@ interface PayloadBody {
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute<{
+export default define<{
   ReqBody: PayloadBody;
 }>(async (req, res) => {
   const { success, error } = membershipRepository.validate(

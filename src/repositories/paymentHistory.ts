@@ -32,7 +32,6 @@ interface TrainerAppointmentPayload {
   gym_id: number;
   appointed_at: string;
   ends_at: string;
-  created_at: string;
 }
 
 interface MembershipResponse {
@@ -49,6 +48,7 @@ interface TrainerAppointmentResponse {
   client_id: number;
   employee_id: number;
   gym_id: number;
+  created_at: Date;
   appointed_at: Date;
   ends_at: Date;
 }
@@ -63,7 +63,6 @@ export class PaymentHistoryRepository extends Repository<PaymentHistory> {
       client_id: z.number(),
       bank_card_id: z.number(),
     }),
-    [this.Schema.Delete]: z.object({}),
   };
 
   public async trainerAppoint({

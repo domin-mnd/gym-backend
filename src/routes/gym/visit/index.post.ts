@@ -4,7 +4,7 @@ import { VisitHistoryRepository } from "@/repositories/visitHistory";
 import { assertError, throwError } from "@/utils/api";
 import { getToken } from "@/utils/jwt";
 import type { ClientLocals } from "@/utils/types";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const visitHistoryRepository = new VisitHistoryRepository(db);
 const sessionRepository = new SessionRepository(db);
@@ -61,7 +61,7 @@ interface PayloadBody {
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute<{
+export default define<{
   ReqBody: PayloadBody;
   Locals: ClientLocals;
 }>(async (req, res) => {

@@ -4,7 +4,7 @@ import { TrainerAppointmentRepository } from "@/repositories/trainerAppointment"
 import { throwError } from "@/utils/api";
 import { getToken } from "@/utils/jwt";
 import type { ClientLocals } from "@/utils/types";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const sessionRepository = new SessionRepository(db);
 const trainerAppointmentRepository = new TrainerAppointmentRepository(
@@ -50,7 +50,7 @@ type PayloadParams = {
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute<{
+export default define<{
   Params: PayloadParams;
   Locals: ClientLocals;
 }>(async (req, res) => {

@@ -1,6 +1,7 @@
 import express, { type Express } from "express";
 import helmet from "helmet";
 import { createRouter } from "storona";
+import { adapter } from "@storona/express";
 import { logRoutes } from "@/utils/logger";
 import { middleware } from "@/middleware";
 import {
@@ -41,7 +42,9 @@ async function createServer(): Promise<Express> {
   // Router
   const routes = await createRouter(app, {
     directory: "src/routes",
-    prefix: true,
+    adapter: adapter({
+      prefix: true,
+    }),
     quiet: true,
   });
 

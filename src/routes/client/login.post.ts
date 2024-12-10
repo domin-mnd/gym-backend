@@ -2,7 +2,7 @@ import { db } from "@/database";
 import { ClientRepository } from "@/repositories/client";
 import { SessionRepository } from "@/repositories/session";
 import { assertError, throwError } from "@/utils/api";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const clientRepository = new ClientRepository(db);
 const sessionRepository = new SessionRepository(db);
@@ -60,7 +60,7 @@ interface PayloadBody {
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute<{
+export default define<{
   ReqBody: PayloadBody;
 }>(async (req, res) => {
   const { success, error } = clientRepository.validate(

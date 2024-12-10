@@ -1,7 +1,7 @@
 import { db } from "@/database";
 import { BankCardRepository } from "@/repositories/bankCard";
 import type { ClientLocals } from "@/utils/types";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const bankCardRepository = new BankCardRepository(db);
 
@@ -36,7 +36,7 @@ const bankCardRepository = new BankCardRepository(db);
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute<{
+export default define<{
   Locals: ClientLocals;
 }>(async (_req, res) => {
   const bankCards = await bankCardRepository.getByClient(

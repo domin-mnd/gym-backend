@@ -1,7 +1,7 @@
 import { db } from "@/database";
 import { VisitHistoryRepository } from "@/repositories/visitHistory";
 import type { ClientLocals } from "@/utils/types";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const visitHistoryRepository = new VisitHistoryRepository(db);
 
@@ -33,7 +33,7 @@ const visitHistoryRepository = new VisitHistoryRepository(db);
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute<{
+export default define<{
   Locals: ClientLocals;
 }>(async (_req, res) => {
   const visit = await visitHistoryRepository.leave(

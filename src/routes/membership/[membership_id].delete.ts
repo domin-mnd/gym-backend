@@ -1,7 +1,7 @@
 import { db } from "@/database";
 import { MembershipRepository } from "@/repositories/membership";
 import { throwError } from "@/utils/api";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const membershipRepository = new MembershipRepository(db);
 
@@ -9,7 +9,7 @@ type PayloadParams = {
   membership_id: string;
 };
 
-export default defineExpressRoute<{
+export default define<{
   Params: PayloadParams;
 }>(async (req, res) => {
   const { success, error } = membershipRepository.validate(

@@ -1,7 +1,7 @@
 import { db } from "@/database";
 import { GymRepository } from "@/repositories/gym";
 import { throwError } from "@/utils/api";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const gymRepository = new GymRepository(db);
 
@@ -44,7 +44,7 @@ type PayloadParams = {
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute<{
+export default define<{
   Params: PayloadParams;
 }>(async (req, res) => {
   const { success, error } = gymRepository.validate(

@@ -1,6 +1,6 @@
 import { db } from "@/database";
 import { PaymentHistoryRepository } from "@/repositories/paymentHistory";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const paymentHistoryRepository = new PaymentHistoryRepository(db);
 
@@ -35,7 +35,7 @@ const paymentHistoryRepository = new PaymentHistoryRepository(db);
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute(async (_req, res) => {
+export default define(async (_req, res) => {
   const history = await paymentHistoryRepository.getAllParsed();
 
   res.json({

@@ -2,7 +2,7 @@ import { db } from "@/database";
 import { SessionRepository } from "@/repositories/session";
 import { assertError } from "@/utils/api";
 import { getToken } from "@/utils/jwt";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const sessionRepository = new SessionRepository(db);
 
@@ -35,7 +35,7 @@ const sessionRepository = new SessionRepository(db);
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute(async (req, res) => {
+export default define(async (req, res) => {
   const session = await sessionRepository.get(getToken(req));
   if (assertError(session, res)) return;
 

@@ -5,7 +5,7 @@ import { PaymentHistoryRepository } from "@/repositories/paymentHistory";
 import { assertError, throwError } from "@/utils/api";
 import type { ClientLocals } from "@/utils/types";
 import type { LevelType } from "kysely-codegen";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const membershipRepository = new MembershipRepository(db);
 const bankCardRepository = new BankCardRepository(db);
@@ -16,7 +16,7 @@ interface PayloadBody {
   level_type: LevelType;
 }
 
-export default defineExpressRoute<{
+export default define<{
   ReqBody: PayloadBody;
   Locals: ClientLocals;
 }>(async (req, res) => {

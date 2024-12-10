@@ -1,6 +1,6 @@
 import { getSpec } from "@/utils/swagger";
 import type { ClientLocals } from "@/utils/types";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const spec = getSpec();
 
@@ -22,7 +22,7 @@ const spec = getSpec();
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute<{
+export default define<{
   Locals: ClientLocals;
 }>(async (_req, res) => {
   res.json(await spec);

@@ -4,7 +4,7 @@ import { VisitHistoryRepository } from "@/repositories/visitHistory";
 import { assertError, throwError } from "@/utils/api";
 import { getGraph } from "@/utils/graph";
 import type { ClientLocals } from "@/utils/types";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const visitHistoryRepository = new VisitHistoryRepository(db);
 
@@ -59,7 +59,7 @@ type PayloadParams = {
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute<{
+export default define<{
   ReqQuery: PayloadQs;
   Params: PayloadParams;
   Locals: ClientLocals;

@@ -2,7 +2,7 @@ import { db } from "@/database";
 import { BankCardRepository } from "@/repositories/bankCard";
 import { assertError, throwError } from "@/utils/api";
 import type { ClientLocals } from "@/utils/types";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const bankCardRepository = new BankCardRepository(db);
 
@@ -68,7 +68,7 @@ interface PayloadBody {
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute<{
+export default define<{
   ReqBody: PayloadBody;
   Locals: ClientLocals;
 }>(async (req, res) => {

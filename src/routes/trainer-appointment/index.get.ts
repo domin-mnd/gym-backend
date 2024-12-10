@@ -2,7 +2,7 @@ import { db } from "@/database";
 import { TrainerAppointmentRepository } from "@/repositories/trainerAppointment";
 import { throwError } from "@/utils/api";
 import type { ClientLocals } from "@/utils/types";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const trainerAppointmentRepository = new TrainerAppointmentRepository(
   db,
@@ -45,7 +45,7 @@ type PayloadQs = {
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute<{
+export default define<{
   ReqQuery: PayloadQs;
   Locals: ClientLocals;
 }>(async (req, res) => {

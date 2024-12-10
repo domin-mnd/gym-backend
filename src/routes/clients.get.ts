@@ -1,6 +1,6 @@
 import { db } from "@/database";
 import { ClientRepository } from "@/repositories/client";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 const clientRepository = new ClientRepository(db);
 
@@ -35,7 +35,7 @@ const clientRepository = new ClientRepository(db);
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute(async (_req, res) => {
+export default define(async (_req, res) => {
   const clients = await clientRepository.getAll();
 
   res.json({

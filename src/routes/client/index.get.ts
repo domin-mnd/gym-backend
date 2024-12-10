@@ -1,5 +1,5 @@
 import type { ClientLocals } from "@/utils/types";
-import { defineExpressRoute } from "storona";
+import { define } from "@storona/express";
 
 /**
  * @openapi
@@ -30,7 +30,7 @@ import { defineExpressRoute } from "storona";
  *       429:
  *         $ref: "#/components/responses/TooManyRequests"
  */
-export default defineExpressRoute<{
+export default define<{
   Locals: ClientLocals;
 }>(async (_req, res) => {
   delete res.locals.client.password_hash;
